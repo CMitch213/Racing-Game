@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
+  m_Name: Camaro
+  m_EditorClassIdentifier: 
+  acceleration: 3
+  dragForce: 30
+  brakePressure: 1
+  turnSpeed: 50
+  maxSpeed: 25
+  maxReverseSpeed: 10
+  horsepowerCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  motorTorque: 2000
+  brakeTorque: 2000
+  centreOfGravityOffsetf: -1
+  steeringRange: 30
+  steeringRangeAtMaxSpeed: 10
+  carName: Camaro
+  carBrand: Chevrolet

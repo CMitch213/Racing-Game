@@ -354,11 +354,13 @@
 -analyzer:"C:/Users/Coopj/OneDrive/Desktop/Unity Installs/2022.3.24f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/CameraControls.cs"
 "Assets/Scripts/CarScript.cs"
+"Assets/Scripts/CarStats.cs"
 "Assets/Scripts/PreMadeCarController/MST_Creator/Car Controller For Unity/Scripts/Car_Controller.cs"
 "Assets/Scripts/PreMadeCarController/MST_Creator/Car Controller For Unity/Scripts/Minimap_Cam.cs"
 "Assets/Scripts/PreMadeCarController/MST_Creator/Car Controller For Unity/Scripts/Radio.cs"
 "Assets/Scripts/PreMadeCarController/MST_Creator/Car Controller For Unity/Scripts/Speedometer_Controller.cs"
 "Assets/Scripts/PreMadeCarController/MST_Creator/Car Controller For Unity/Scripts/Wheel_Effects.cs"
+"Assets/Scripts/WheelControl.cs"
 -langversion:9.0
 
 /deterministic
