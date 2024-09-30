@@ -12,22 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
   m_Name: Camaro
   m_EditorClassIdentifier: 
-  acceleration: 3
-  dragForce: 30
-  brakePressure: 1
-  turnSpeed: 50
-  maxSpeed: 25
-  maxReverseSpeed: 10
+  hp: 323
   horsepowerCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  motorTorque: 2000
-  brakeTorque: 2000
-  centreOfGravityOffsetf: -1
-  steeringRange: 30
-  steeringRangeAtMaxSpeed: 10
+  EngineTorque: 378
+  BrakePower: 5000
+  topSpeed: 249
+  centreOfGravityOffsetf: -3
+  MaxSteeringAngle: 30
   carName: Camaro
   carBrand: Chevrolet
+  AWD: 0
+  FWD: 0
+  RWD: 1

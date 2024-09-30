@@ -6,24 +6,26 @@ using UnityEngine;
 public class CarStats : ScriptableObject
 {
     [Header("Engine Stats")]
-    public float acceleration;
-    public float dragForce;
-    public float brakePressure;     //0 (instant braking) - 1 (standard  braking)
-    public float turnSpeed;
-    public float maxSpeed;
-    public float maxReverseSpeed;
+    public float hp;
     public AnimationCurve horsepowerCurve;          //Currently Unused
-    public float motorTorque;
-    public float brakeTorque;
+    public float EngineTorque;
+    public float BrakePower;
+    public float topSpeed;
 
     [Header("Vehicle Stats")]
     public float centreOfGravityOffsetf;
 
     [Header("Steering Stats")]
-    public float steeringRange;
-    public float steeringRangeAtMaxSpeed;
+    public float MaxSteeringAngle;
 
     [Header("General Stats")]
     public string carName;
     public string carBrand;
+
+    [Header("Drive Train")]
+    public bool AWD;
+    public bool FWD;
+    public bool RWD;
+
+    //[Header("Code Stats")]
 }

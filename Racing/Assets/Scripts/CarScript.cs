@@ -1,115 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarScript : MonoBehaviour
 {
 
     public CarStats car;
-    public float speedFactor;
-    public float moveInput;
-    float timer;
-    bool isBraking = false;
+    public TMP_Text Speed_Text;
+    public Rigidbody rb;
+    float kph = 0;
 
-    WheelControl[] wheels;
-    private Rigidbody carRigidbody;
+    public List<WheelCollider> SteeringWheels;
+    public List<WheelCollider> PoweredWheels;
+    public List<WheelCollider> Wheels;
+    public List<WheelCollider> FrontWheels;
+    public List<WheelCollider> RearWheels;
 
+    [SerializeField] private float ThrottleInput;
+    [SerializeField] private float BrakeInput;
+    [SerializeField] private float HandBrakeInput;
+    [SerializeField] private float SteeringInput;
+
+
+    // Start is called before the first frame update
     void Start()
     {
-        carRigidbody = GetComponent<Rigidbody>();
-        wheels = GetComponentsInChildren<WheelControl>();
 
-        // Adjust center of mass vertically, to help prevent the car from rolling
-        carRigidbody.centerOfMass += Vector3.up * car.centreOfGravityOffsetf;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        HandleMovement();
-        HandleSteering();
+        // Input for Gamepad(s)
+        Gamepad CurrentGamepad = Gamepad.current;
+        if (CurrentGamepad == null) { Debug.Log("Reconnect Controller/Gamepad"); return; }
 
-        // Calculate how close the car is to top speed
-        // as a number from zero to one
-        speedFactor = Mathf.InverseLerp(0, car.maxSpeed, carRigidbody.velocity.magnitude);
-    }
-
-    private void HandleMovement()
-    {
-        float moveInput = Input.GetAxis("Vertical");
-        Vector3 forwardForce = transform.forward * moveInput * car.acceleration;
-
-        if (moveInput < 0 && carRigidbody.velocity.magnitude < car.maxReverseSpeed && isBraking == false)
+        //Use Gas
+        ThrottleInput = CurrentGamepad.rightTrigger.ReadValue();
+        foreach (WheelCollider PWheel in PoweredWheels)
         {
-            carRigidbody.AddForce(forwardForce / 2, ForceMode.Acceleration);
-        }
-        else if (carRigidbody.velocity.magnitude < car.maxSpeed && isBraking == false)
-        {
-            carRigidbody.AddForce(forwardForce, ForceMode.Acceleration);
+            PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / 20));
         }
 
-        // If you press space, brake
-        if (Input.GetButton("Jump"))
+
+        //Use Brakes
+        BrakeInput = CurrentGamepad.leftTrigger.ReadValue();
+        foreach (WheelCollider Wheel in Wheels)
         {
-            moveInput = 0.0f;
-            carRigidbody.drag = car.dragForce;
-            carRigidbody.velocity *= 0.995f * car.brakePressure;
-            Debug.Log("Braking!");
-            isBraking = true;
-            Debug.Log("Braking =" + isBraking);
+            Wheel.brakeTorque = BrakeInput * car.BrakePower * 10;
         }
+
+        //Use handbrake
+        HandBrakeInput = CurrentGamepad.aButton.ReadValue();
+        if(HandBrakeInput == 1.0f)
+        {
+            foreach (WheelCollider RWheel in RearWheels)
+            {
+                //Lower Friction
+                WheelFrictionCurve myWfc;
+                myWfc = RWheel.sidewaysFriction;
+                myWfc.extremumSlip = 0.01f;
+                RWheel.forwardFriction = myWfc;
+
+                //Apply Braking
+                RWheel.brakeTorque = BrakeInput * car.BrakePower * 30;
+            }
+        }
+        //Reset after using handbrake
         else
         {
-            isBraking = false;
-        }
-        if(carRigidbody.velocity.magnitude > 0.1f  && !Input.GetKeyDown(KeyCode.Space))
-        {
-            carRigidbody.drag = 0;
-        }
-    }
-
-    private void HandleSteering()
-    {
-        float turnInput = Input.GetAxis("Horizontal");
-
-        /*
-        if (turnInput != 0)
-        {
-            float turn = turnInput * car.turnSpeed * Time.deltaTime;
-            transform.Rotate(0, turn, 0);
-        }
-        */
-
-        // (the car steers more gently at top speed)
-        float currentSteerRange = Mathf.Lerp(car.steeringRange, car.steeringRangeAtMaxSpeed, speedFactor);
-
-        float currentMotorTorque = Mathf.Lerp(car.motorTorque, 0, speedFactor);
-
-        bool isAccelerating = Mathf.Sign(moveInput) == Mathf.Sign(carRigidbody.velocity.magnitude);
-
-        foreach (var wheel in wheels)
-        {
-            // Apply steering to Wheel colliders that have "Steerable" enabled
-            if (wheel.steerable)
+            foreach (WheelCollider RWheel in RearWheels)
             {
-                wheel.WheelCollider.steerAngle = turnInput * currentSteerRange;
-            }
-
-            if (isAccelerating)
-            {
-                // Apply torque to Wheel colliders that have "Motorized" enabled
-                if (wheel.motorized)
-                {
-                    wheel.WheelCollider.motorTorque = moveInput * currentMotorTorque;
-                }
-                wheel.WheelCollider.brakeTorque = 0;
-            }
-            else
-            {
-                // If the user is trying to go in the opposite direction
-                // apply brakes to all wheels
-                wheel.WheelCollider.brakeTorque = Mathf.Abs(moveInput) * car.brakeTorque;
-                wheel.WheelCollider.motorTorque = 0;
+                //Reset Friction
+                WheelFrictionCurve myWfc;
+                myWfc = RWheel.sidewaysFriction;
+                myWfc.extremumSlip = 0.6f;
+                RWheel.forwardFriction = myWfc;
             }
         }
+
+        SteeringInput = CurrentGamepad.leftStick.ReadValue().x;
+        foreach (WheelCollider SWheel in SteeringWheels)
+        {
+            SWheel.steerAngle = Mathf.Lerp(-car.MaxSteeringAngle, car.MaxSteeringAngle, SteeringInput + 0.5f);
+        }
+
+        //Limit Speed
+        if (kph > car.topSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * car.topSpeed;
+        }
+
+        //Spedometer
+        kph = rb.velocity.magnitude;
+        Speed_Text.text = ((int)(kph)).ToString();
     }
 }
