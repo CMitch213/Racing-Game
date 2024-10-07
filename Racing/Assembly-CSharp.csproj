@@ -60,7 +60,9 @@
     <Analyzer Include="C:\Users\Coopj\OneDrive\Desktop\Unity Installs\2022.3.24f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Reset.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Speedometer_Controller.cs" />
+    <Compile Include="Assets\Scripts\Downforce.cs" />
     <Compile Include="Assets\Scripts\CursorScript.cs" />
     <Compile Include="Assets\Scripts\WheelControl.cs" />
     <Compile Include="Assets\Scripts\CameraControls.cs" />

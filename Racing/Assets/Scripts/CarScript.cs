@@ -22,6 +22,7 @@ public class CarScript : MonoBehaviour
     [SerializeField] private float BrakeInput;
     [SerializeField] private float HandBrakeInput;
     [SerializeField] private float SteeringInput;
+    [SerializeField] private float ReverseInput;
 
 
     // Start is called before the first frame update
@@ -51,6 +52,40 @@ public class CarScript : MonoBehaviour
         {
             Wheel.brakeTorque = BrakeInput * car.BrakePower * 10;
         }
+        if(BrakeInput == 1)
+        {
+            foreach (WheelCollider Wheel in Wheels)
+            {
+                //Reset Friction
+                WheelFrictionCurve Wfc;
+                Wfc = Wheel.sidewaysFriction;
+
+                //Reset Values
+                Wfc.extremumSlip = 0.4f;
+                Wfc.extremumValue = 1.5f;
+                Wfc.asymptoteSlip = 0.6f;
+                Wfc.asymptoteValue = 1f;
+
+                Wheel.forwardFriction = Wfc;
+            }
+        }
+        else
+        {
+            foreach (WheelCollider Wheel in Wheels)
+            {
+                //Reset Friction
+                WheelFrictionCurve Wfc;
+                Wfc = Wheel.sidewaysFriction;
+
+                //Reset Values
+                Wfc.extremumSlip = 0.4f;
+                Wfc.extremumValue = 3.0f;
+                Wfc.asymptoteSlip = 0.6f;
+                Wfc.asymptoteValue = 2f;
+
+                Wheel.forwardFriction = Wfc;
+            }
+        }
 
         //Use handbrake
         HandBrakeInput = CurrentGamepad.aButton.ReadValue();
@@ -74,23 +109,41 @@ public class CarScript : MonoBehaviour
             foreach (WheelCollider RWheel in RearWheels)
             {
                 //Reset Friction
-                WheelFrictionCurve myWfc;
-                myWfc = RWheel.sidewaysFriction;
-                myWfc.extremumSlip = 0.6f;
-                RWheel.forwardFriction = myWfc;
+                WheelFrictionCurve Wfc;
+                Wfc = RWheel.sidewaysFriction;
+
+                //Reset Values
+                Wfc.extremumSlip = 0.4f;
+                Wfc.extremumValue = 3.0f;
+                Wfc.asymptoteSlip = 0.6f;
+                Wfc.asymptoteValue = 2f;
+
+                RWheel.forwardFriction = Wfc;
             }
         }
 
         SteeringInput = CurrentGamepad.leftStick.ReadValue().x;
+        float steerangle;
+        steerangle = car.MaxSteeringAngle * (1 - (kph / car.topSpeed));
         foreach (WheelCollider SWheel in SteeringWheels)
         {
-            SWheel.steerAngle = Mathf.Lerp(-car.MaxSteeringAngle, car.MaxSteeringAngle, SteeringInput + 0.5f);
+            SWheel.steerAngle = Mathf.Lerp(-steerangle, steerangle, SteeringInput + 0.5f);
         }
 
         //Limit Speed
         if (kph > car.topSpeed)
         {
             rb.velocity = rb.velocity.normalized * car.topSpeed;
+        }
+
+        //Reverse
+        ReverseInput = CurrentGamepad.bButton.ReadValue();
+        if (ReverseInput == 1.0f)
+        {
+            foreach (WheelCollider PWheel in PoweredWheels)
+            {
+                PWheel.motorTorque = -(car.EngineTorque * (car.hp / 20));
+            }
         }
 
         //Spedometer
