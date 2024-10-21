@@ -11,6 +11,7 @@ public class CarScript : MonoBehaviour
     public TMP_Text Speed_Text;
     public Rigidbody rb;
     float kph = 0;
+    float steerangle;
 
     public List<WheelCollider> SteeringWheels;
     public List<WheelCollider> PoweredWheels;
@@ -24,6 +25,22 @@ public class CarScript : MonoBehaviour
     [SerializeField] private float SteeringInput;
     [SerializeField] private float ReverseInput;
 
+    //Headlights
+    [Header("Headlights")]
+    public Light headlightL;
+    public Light headlightR;
+    bool headlightsEnabled = true;
+    public float toggleTime = 1;
+    [SerializeField] private float HeadlightToggle;
+
+    //Shifting
+    [Header("Shifting")]
+    [SerializeField] private float ShiftUp;
+    [SerializeField] private float ShiftDown;
+    public int gearNum = 1;
+    public string dashGear = "";
+    public TMP_Text gearText;
+    public float shiftTime = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +57,63 @@ public class CarScript : MonoBehaviour
 
         //Use Gas
         ThrottleInput = CurrentGamepad.rightTrigger.ReadValue();
-        foreach (WheelCollider PWheel in PoweredWheels)
+        if (dashGear == "D")
         {
-            PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / 20));
+            foreach (WheelCollider PWheel in PoweredWheels)
+            {
+                PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / 20));
+            }
+        }
+
+        shiftTime += Time.deltaTime;
+        //Shift
+        if (car.Auto)
+        {
+            ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
+            ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
+
+            // Automatic
+            if (car.Auto)
+            {
+                //Shift Up
+                if(ShiftUp == 1 && shiftTime >= 0.5f)
+                {
+                    gearNum++;
+                    shiftTime = 0.0f;
+                }
+                //Shift Down
+                if (ShiftDown == 1 && shiftTime >= 0.5f)
+                {
+                    gearNum--;
+                    shiftTime = 0.0f;
+                }
+
+                //Set Dashboard display for each gear in PRNDL
+                if (gearNum == 1)
+                {
+                    dashGear = "P";
+                    gearText.text = dashGear;
+                }
+                else if (gearNum == 2)
+                {
+                    dashGear = "R";
+                    gearText.text = dashGear;
+                }
+                else if (gearNum == 3)
+                {
+                    dashGear = "N";
+                    gearText.text = dashGear;
+                }
+                else if (gearNum == 4)
+                {
+                    dashGear = "D";
+                    gearText.text = dashGear;
+                }
+
+                //Don't let go below park or above drive
+                if (gearNum < 1) { gearNum = 1; }
+                if (gearNum > 4) { gearNum = 4; }
+            }
         }
 
 
@@ -97,11 +168,14 @@ public class CarScript : MonoBehaviour
                 WheelFrictionCurve myWfc;
                 myWfc = RWheel.sidewaysFriction;
                 myWfc.extremumSlip = 0.01f;
+                myWfc.stiffness = 0.1f;
                 RWheel.forwardFriction = myWfc;
 
                 //Apply Braking
-                RWheel.brakeTorque = BrakeInput * car.BrakePower * 30;
+                RWheel.brakeTorque = BrakeInput * car.BrakePower * 50;
             }
+
+            steerangle *= 2.0f;
         }
         //Reset after using handbrake
         else
@@ -117,14 +191,17 @@ public class CarScript : MonoBehaviour
                 Wfc.extremumValue = 3.0f;
                 Wfc.asymptoteSlip = 0.6f;
                 Wfc.asymptoteValue = 2f;
+                Wfc.stiffness = 1f;
 
                 RWheel.forwardFriction = Wfc;
             }
+
+            steerangle = car.MaxSteeringAngle * (1 - (kph / car.topSpeed));
         }
 
+        //Steer car
         SteeringInput = CurrentGamepad.leftStick.ReadValue().x;
-        float steerangle;
-        steerangle = car.MaxSteeringAngle * (1 - (kph / car.topSpeed));
+        steerangle = (car.MaxSteeringAngle * (1 - (kph / car.topSpeed))) + 4;
         foreach (WheelCollider SWheel in SteeringWheels)
         {
             SWheel.steerAngle = Mathf.Lerp(-steerangle, steerangle, SteeringInput + 0.5f);
@@ -137,12 +214,89 @@ public class CarScript : MonoBehaviour
         }
 
         //Reverse
-        ReverseInput = CurrentGamepad.bButton.ReadValue();
-        if (ReverseInput == 1.0f)
+        if (dashGear == "R")
         {
             foreach (WheelCollider PWheel in PoweredWheels)
             {
-                PWheel.motorTorque = -(car.EngineTorque * (car.hp / 20));
+                PWheel.motorTorque = -(car.EngineTorque * (car.hp / 20)) * ThrottleInput;
+            }
+        }
+
+        //Put Car in Park
+        if(dashGear == "P")
+        {
+            foreach (WheelCollider Wheel in Wheels)
+            {
+                Wheel.brakeTorque = car.BrakePower * 500;
+            }
+        }
+
+        //Put Car in Neutral
+        if(dashGear == "N")
+        {
+            //Make it so the car can roll
+            foreach (WheelCollider RWheel in RearWheels)
+            {
+                //Lower Friction
+                WheelFrictionCurve myWfc;
+                myWfc = RWheel.sidewaysFriction;
+                myWfc.extremumSlip = 0.01f;
+                myWfc.stiffness = 0.1f;
+                RWheel.forwardFriction = myWfc;
+
+                //Apply Braking
+                RWheel.brakeTorque = BrakeInput * car.BrakePower * 50;
+            }
+        }
+        if(dashGear != "N" && HandBrakeInput < 1.0f)
+        {
+            //Reset Friction
+            foreach (WheelCollider RWheel in RearWheels)
+            {
+                //Reset Friction
+                WheelFrictionCurve Wfc;
+                Wfc = RWheel.sidewaysFriction;
+
+                //Reset Values
+                Wfc.extremumSlip = 0.4f;
+                Wfc.extremumValue = 3.0f;
+                Wfc.asymptoteSlip = 0.6f;
+                Wfc.asymptoteValue = 2f;
+                Wfc.stiffness = 1f;
+
+                RWheel.forwardFriction = Wfc;
+            }
+        }
+
+        
+        toggleTime += Time.deltaTime;
+        //Toggle Headlights
+        HeadlightToggle = CurrentGamepad.buttonNorth.ReadValue();
+        if (HeadlightToggle == 1)
+        {
+            if (headlightsEnabled && toggleTime >= 0.6)
+            {
+                headlightL.intensity = 0;
+                headlightR.intensity = 0;
+                headlightsEnabled = false;
+                toggleTime = 0f;
+
+                // Rumble the  low-frequency (left) motor at 1/4 speed and the high-frequency
+                // (right) motor at 3/4 speed.
+                Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+                InputSystem.ResetHaptics();
+            }
+            else if (headlightsEnabled == false && toggleTime >= 0.6)
+            {
+                headlightL.intensity = 2;
+                headlightR.intensity = 2;
+                headlightsEnabled = true;
+                toggleTime = 0f;
+
+                // Rumble the  low-frequency (left) motor at 1/4 speed and the high-frequency
+                // (right) motor at 3/4 speed.
+                Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+                InputSystem.ResetHaptics();
             }
         }
 

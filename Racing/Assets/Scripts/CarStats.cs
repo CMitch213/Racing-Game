@@ -10,6 +10,7 @@ public class CarStats : ScriptableObject
     public AnimationCurve horsepowerCurve;          //Currently Unused
     public float EngineTorque;
     public float BrakePower;
+    [Tooltip("Car top speed is in mp/h")]
     public float topSpeed;
 
     [Header("Vehicle Stats")]
@@ -26,6 +27,11 @@ public class CarStats : ScriptableObject
     public bool AWD;
     public bool FWD;
     public bool RWD;
+
+    [Header("Transmission")]
+    public int Speed;
+    public bool Auto;
+    public bool Manual;
 
     //[Header("Code Stats")]
 }
