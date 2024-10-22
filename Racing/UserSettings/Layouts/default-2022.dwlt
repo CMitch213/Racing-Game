@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 110
+  controlID: 113
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 42
+  controlID: 103
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 43
+  controlID: 104
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,7 +299,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 363
     y: 73
-    width: 1101
+    width: 1100
     height: 535
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -356,7 +356,8 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets/AssetStore/ARCADE - FREE Racing Car/Materials
+    - Assets/Assets/AssetStore/UnityTechnologies/ParticlePack/EffectExamples/Smoke
+      & Steam Effects/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -364,16 +365,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Assets/AssetStore/ARCADE - FREE Racing Car/Materials
+  - Assets/Assets/AssetStore/UnityTechnologies/ParticlePack/EffectExamples/Smoke
+    & Steam Effects/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Coopj\OneDrive\Desktop\Code\RacingGame\Racing-Game\Racing
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 62}
-    m_SelectedIDs: 84fb0100
-    m_LastClickedID: 129924
-    m_ExpandedIDs: 00000000f05e0000fe5e0000025f000074fb01007efb010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 714}
+    m_SelectedIDs: 263c0100
+    m_LastClickedID: 80934
+    m_ExpandedIDs: 00000000d4600000da600000de60000002610000046100001061000012610000c8a40000723b0100763b0100823b0100923b01009a3b0100b63b0100ba3b010080520100845201008852010090520100ac520100b0520100b4520100b8520100bc520100c0520100c452010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -401,7 +403,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f05e0000
+    m_ExpandedIDs: 00000000d4600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -543,7 +545,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6884ffff2cfbffff9c5d0000e25d0000f25d0000fc5d0000fe5d0000
+      m_ExpandedIDs: 0833c4ff4a33c4ffbc33c4ffc2bec7ff44bfc7ffeebfc7ff46c1c7ff00fbffff4e5e0000b85e0000205f00004a5f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -605,7 +607,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -171, y: -26}
+      snapOffset: {x: -231, y: -26}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
@@ -657,7 +659,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -826,7 +828,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -973,7 +975,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: APV Overlay
-      index: 12
+      index: 9
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -990,6 +992,19 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 48, y: 48}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: unity-spline-inspector
+      index: 8
+      layout: 4
+      size: {x: 0, y: 0}
+      sizeOverriden: 0
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
@@ -1001,9 +1016,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.0483527, y: 19.052021, z: -24.49966}
+    m_Target: {x: -168.44096, y: -69.58865, z: 135.9001}
     speed: 2
-    m_Value: {x: 5.0483527, y: 19.052021, z: -24.49966}
+    m_Value: {x: -168.44096, y: -69.58865, z: 135.9001}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1049,13 +1064,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.017386047, y: -0.9610775, z: 0.26785347, w: -0.062245987}
+    m_Target: {x: -0.12053866, y: 0.3508134, z: -0.04571657, w: -0.9272808}
     speed: 2
-    m_Value: {x: -0.01729611, y: -0.9616743, z: 0.2664659, w: -0.06228471}
+    m_Value: {x: -0.120566435, y: 0.3508942, z: -0.045727104, w: -0.92749447}
   m_Size:
-    m_Target: 13.022601
+    m_Target: 140.79483
     speed: 2
-    m_Value: 13.022601
+    m_Value: 140.79483
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1200,7 +1215,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 629
-    width: 1465
+    width: 1464
     height: 362
   m_SerializedDataModeController:
     m_DataMode: 0

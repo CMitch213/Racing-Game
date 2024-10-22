@@ -43,10 +43,14 @@ public class CarScript : MonoBehaviour
     public TMP_Text gearText;
     public float shiftTime = 1;
 
+    //Particles
+    [Header("Particles")]
+    public ParticleSystem driftParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        driftParticle.Pause();
     }
 
     // Update is called once per frame
@@ -170,13 +174,15 @@ public class CarScript : MonoBehaviour
                 myWfc = RWheel.sidewaysFriction;
                 myWfc.extremumSlip = 0.01f;
                 myWfc.stiffness = 0.1f;
-                RWheel.forwardFriction = myWfc;
+                //RWheel.forwardFriction = myWfc;
+                RWheel.sidewaysFriction = myWfc;
 
                 //Apply Braking
                 RWheel.brakeTorque = BrakeInput * car.BrakePower * 50;
             }
 
             steerangle *= 2.0f;
+            driftParticle.Play();
         }
         //Reset after using handbrake
         else
@@ -194,10 +200,13 @@ public class CarScript : MonoBehaviour
                 Wfc.asymptoteValue = 2f;
                 Wfc.stiffness = 1f;
 
-                RWheel.forwardFriction = Wfc;
+                //RWheel.forwardFriction = Wfc;
+                RWheel.sidewaysFriction = Wfc;
             }
 
             steerangle = car.MaxSteeringAngle * (1 - (kph / car.topSpeed));
+            driftParticle.Pause();
+            driftParticle.Clear();
         }
 
         //Steer car
@@ -244,6 +253,7 @@ public class CarScript : MonoBehaviour
                 myWfc.extremumSlip = 0.01f;
                 myWfc.stiffness = 0.1f;
                 RWheel.forwardFriction = myWfc;
+                //RWheel.sidewaysFriction = myWfc;
 
                 //Apply Braking
                 RWheel.brakeTorque = BrakeInput * car.BrakePower * 50;
@@ -266,6 +276,7 @@ public class CarScript : MonoBehaviour
                 Wfc.stiffness = 1f;
 
                 RWheel.forwardFriction = Wfc;
+                RWheel.sidewaysFriction = Wfc;
             }
         }
 
