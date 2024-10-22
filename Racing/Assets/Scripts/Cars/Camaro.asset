@@ -21,7 +21,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   EngineTorque: 378
   BrakePower: 5000
-  topSpeed: 249
+  topSpeed: 187
   centreOfGravityOffsetf: -3
   MaxSteeringAngle: 30
   carName: Camaro
@@ -29,3 +29,6 @@ MonoBehaviour:
   AWD: 0
   FWD: 0
   RWD: 1
+  Speed: 6
+  Auto: 1
+  Manual: 0

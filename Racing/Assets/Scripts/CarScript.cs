@@ -31,13 +31,14 @@ public class CarScript : MonoBehaviour
     public Light headlightR;
     bool headlightsEnabled = true;
     public float toggleTime = 1;
+    public int headLightCycle = 1;
     [SerializeField] private float HeadlightToggle;
 
     //Shifting
     [Header("Shifting")]
     [SerializeField] private float ShiftUp;
     [SerializeField] private float ShiftDown;
-    public int gearNum = 1;
+    public int gearNum = 4;
     public string dashGear = "";
     public TMP_Text gearText;
     public float shiftTime = 1;
@@ -272,9 +273,14 @@ public class CarScript : MonoBehaviour
         toggleTime += Time.deltaTime;
         //Toggle Headlights
         HeadlightToggle = CurrentGamepad.buttonNorth.ReadValue();
-        if (HeadlightToggle == 1)
+        if (HeadlightToggle == 1 && toggleTime >= 0.4f)
         {
-            if (headlightsEnabled && toggleTime >= 0.6)
+            headLightCycle++;
+            //Loop back around
+            if (headLightCycle > 2) { headLightCycle = 0; }
+
+            //Headlights off
+            if(headLightCycle == 0)
             {
                 headlightL.intensity = 0;
                 headlightR.intensity = 0;
@@ -286,10 +292,28 @@ public class CarScript : MonoBehaviour
                 Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
                 InputSystem.ResetHaptics();
             }
-            else if (headlightsEnabled == false && toggleTime >= 0.6)
+            //Normal
+            else if(headLightCycle == 1)
             {
                 headlightL.intensity = 2;
+                headlightL.range = 20;
                 headlightR.intensity = 2;
+                headlightR.range = 20;
+                headlightsEnabled = true;
+                toggleTime = 0f;
+
+                // Rumble the  low-frequency (left) motor at 1/4 speed and the high-frequency
+                // (right) motor at 3/4 speed.
+                Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+                InputSystem.ResetHaptics();
+            }
+            //High Beams
+            else if (headLightCycle == 2)
+            {
+                headlightL.intensity = 4;
+                headlightL.range = 60;
+                headlightR.intensity = 4;
+                headlightR.range = 60;
                 headlightsEnabled = true;
                 toggleTime = 0f;
 
