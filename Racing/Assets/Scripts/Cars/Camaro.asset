@@ -22,6 +22,7 @@ MonoBehaviour:
   EngineTorque: 378
   BrakePower: 5000
   topSpeed: 187
+  accelMult: 1
   centreOfGravityOffsetf: -3
   MaxSteeringAngle: 30
   carName: Camaro

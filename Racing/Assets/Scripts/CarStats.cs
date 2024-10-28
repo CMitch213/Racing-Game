@@ -12,6 +12,7 @@ public class CarStats : ScriptableObject
     public float BrakePower;
     [Tooltip("Car top speed is in mp/h")]
     public float topSpeed;
+    public float accelMult;
 
     [Header("Vehicle Stats")]
     public float centreOfGravityOffsetf;

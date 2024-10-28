@@ -20,8 +20,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 476
-  BrakePower: 10000
+  BrakePower: 30000
   topSpeed: 191
+  accelMult: 10000
   centreOfGravityOffsetf: -3
   MaxSteeringAngle: 35
   carName: Acura

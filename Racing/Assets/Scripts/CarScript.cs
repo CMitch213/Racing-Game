@@ -95,7 +95,7 @@ public class CarScript : MonoBehaviour
         {
             foreach (WheelCollider PWheel in PoweredWheels)
             {
-                PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / 20));
+                PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp * car.accelMult));
             }
         }
 
