@@ -24,6 +24,8 @@ public class CarScript : MonoBehaviour
     [SerializeField] private float HandBrakeInput;
     [SerializeField] private float SteeringInput;
     [SerializeField] private float ReverseInput;
+    [SerializeField] private float dpadX;
+    [SerializeField] private float dpadY;
 
     //Headlights
     [Header("Headlights")]
@@ -47,10 +49,37 @@ public class CarScript : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem driftParticle;
 
+    //Sounds
+    [Header("Sound Effects")]
+    public AudioSource horn;
+
     // Start is called before the first frame update
     void Start()
     {
         driftParticle.Pause();
+
+        //On Run Setup Drivetrain Style
+        if (car.RWD)
+        {
+            foreach (WheelCollider RWheel in RearWheels)
+            {
+                PoweredWheels = RearWheels;
+            }
+        }
+        else if (car.FWD)
+        {
+            foreach (WheelCollider FWheel in FrontWheels)
+            {
+                PoweredWheels = FrontWheels;
+            }
+        }
+        else if (car.AWD)
+        {
+            foreach (WheelCollider Wheel in Wheels)
+            {
+                PoweredWheels = Wheels;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -333,6 +362,27 @@ public class CarScript : MonoBehaviour
                 Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
                 InputSystem.ResetHaptics();
             }
+        }
+
+        //D-Pad Input
+        dpadX = Gamepad.current.dpad.x.ReadValue();
+        dpadY = Gamepad.current.dpad.y.ReadValue();
+        if (dpadX > 0f)
+        {
+            // player currently holds right
+        }
+        if (dpadX < 0f)
+        {
+            // player currently holds left
+        }
+        if (dpadY > 0f)
+        {
+            // player currently holds up
+            horn.Play();
+        }
+        if (dpadY < 0f)
+        {
+            // player currently holds down
         }
 
         //Spedometer

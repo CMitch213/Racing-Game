@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
+  m_Name: NSX
+  m_EditorClassIdentifier: 
+  hp: 573
+  horsepowerCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  EngineTorque: 476
+  BrakePower: 10000
+  topSpeed: 191
+  centreOfGravityOffsetf: -3
+  MaxSteeringAngle: 35
+  carName: Acura
+  carBrand: NSX
+  AWD: 0
+  FWD: 0
+  RWD: 1
+  Speed: 9
+  Auto: 1
+  Manual: 0
