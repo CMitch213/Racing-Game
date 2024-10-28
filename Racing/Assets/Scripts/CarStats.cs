@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum drivetrainType
+{
+    FWD, RWD, AWD
+}
+
 [CreateAssetMenu(menuName = "Car Physics/Car Stats")]
 public class CarStats : ScriptableObject
 {
@@ -25,10 +30,7 @@ public class CarStats : ScriptableObject
     public string carBrand;
 
     [Header("Drive Train")]
-    public bool AWD;
-    public bool FWD;
-    public bool RWD;
-
+    public drivetrainType carDrivetrain;
     [Header("Transmission")]
     public int Speed;
     public bool Auto;

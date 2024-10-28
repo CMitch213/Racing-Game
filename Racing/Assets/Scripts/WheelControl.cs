@@ -10,6 +10,7 @@ public class WheelControl : MonoBehaviour
 
     public bool steerable;
     public bool motorized;
+    public bool grounded;
 
     Vector3 position;
     Quaternion rotation;
@@ -26,5 +27,17 @@ public class WheelControl : MonoBehaviour
         WheelCollider.GetWorldPose(out position, out rotation);
         wheelModel.transform.position = position;
         wheelModel.transform.rotation = rotation;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Ground")
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
     }
 }

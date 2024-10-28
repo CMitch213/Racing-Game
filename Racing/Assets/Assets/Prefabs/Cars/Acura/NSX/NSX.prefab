@@ -82,18 +82,18 @@ MonoBehaviour:
   Speed_Text: {fileID: 4575222229198670973}
   rb: {fileID: 5818084266504795214}
   SteeringWheels:
-  - {fileID: 0}
+  - {fileID: 595215902708451931}
   - {fileID: 8950613031262716054}
   PoweredWheels:
   - {fileID: 7993239259821421041}
   - {fileID: 9052715126888156130}
   Wheels:
-  - {fileID: 0}
+  - {fileID: 595215902708451931}
   - {fileID: 8950613031262716054}
   - {fileID: 7993239259821421041}
   - {fileID: 9052715126888156130}
   FrontWheels:
-  - {fileID: 0}
+  - {fileID: 595215902708451931}
   - {fileID: 8950613031262716054}
   RearWheels:
   - {fileID: 7993239259821421041}

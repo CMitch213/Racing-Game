@@ -11,13 +11,16 @@ public class CarScript : MonoBehaviour
     public TMP_Text Speed_Text;
     public Rigidbody rb;
     float kph = 0;
+    bool grounded = true;
     float steerangle;
 
     public List<WheelCollider> SteeringWheels;
     public List<WheelCollider> PoweredWheels;
+    public List<GameObject> WheelsGO;
     public List<WheelCollider> Wheels;
     public List<WheelCollider> FrontWheels;
     public List<WheelCollider> RearWheels;
+    public int wheelsOnGround;
 
     [SerializeField] private float ThrottleInput;
     [SerializeField] private float BrakeInput;
@@ -59,27 +62,32 @@ public class CarScript : MonoBehaviour
         driftParticle.Pause();
 
         //On Run Setup Drivetrain Style
-        if (car.RWD)
-        {
-            foreach (WheelCollider RWheel in RearWheels)
-            {
-                PoweredWheels = RearWheels;
-            }
+        switch (car.carDrivetrain) {
+            case drivetrainType.FWD:
+                foreach (WheelCollider FWheel in FrontWheels)
+                {
+                    PoweredWheels = FrontWheels;
+                }
+
+                break;
+
+            case drivetrainType.RWD:
+                foreach (WheelCollider RWheel in RearWheels)
+                {
+                    PoweredWheels = RearWheels;
+                }
+
+                break;
+
+            case drivetrainType.AWD:
+                foreach (WheelCollider Wheel in Wheels)
+                {
+                    PoweredWheels = Wheels;
+                }
+
+                break;
         }
-        else if (car.FWD)
-        {
-            foreach (WheelCollider FWheel in FrontWheels)
-            {
-                PoweredWheels = FrontWheels;
-            }
-        }
-        else if (car.AWD)
-        {
-            foreach (WheelCollider Wheel in Wheels)
-            {
-                PoweredWheels = Wheels;
-            }
-        }
+
     }
 
     // Update is called once per frame
@@ -95,7 +103,7 @@ public class CarScript : MonoBehaviour
         {
             foreach (WheelCollider PWheel in PoweredWheels)
             {
-                PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp * car.accelMult));
+                PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult)));
             }
         }
 
@@ -159,11 +167,13 @@ public class CarScript : MonoBehaviour
         }
         if(BrakeInput == 1)
         {
+            Debug.Log("Braking!");
+
             foreach (WheelCollider Wheel in Wheels)
             {
                 //Reset Friction
                 WheelFrictionCurve Wfc;
-                Wfc = Wheel.sidewaysFriction;
+                Wfc = Wheel.forwardFriction;
 
                 //Reset Values
                 Wfc.extremumSlip = 0.4f;
@@ -180,7 +190,7 @@ public class CarScript : MonoBehaviour
             {
                 //Reset Friction
                 WheelFrictionCurve Wfc;
-                Wfc = Wheel.sidewaysFriction;
+                Wfc = Wheel.forwardFriction;
 
                 //Reset Values
                 Wfc.extremumSlip = 0.4f;
@@ -257,7 +267,7 @@ public class CarScript : MonoBehaviour
         {
             foreach (WheelCollider PWheel in PoweredWheels)
             {
-                PWheel.motorTorque = -(car.EngineTorque * (car.hp / 20)) * ThrottleInput;
+                PWheel.motorTorque = -(car.EngineTorque * (car.hp / (20 - car.accelMult))) * ThrottleInput;
             }
         }
 
@@ -388,5 +398,25 @@ public class CarScript : MonoBehaviour
         //Spedometer
         kph = rb.velocity.magnitude;
         Speed_Text.text = ((int)(kph)).ToString();
+
+        //Check if 2/4 of the wheels are off the ground
+        foreach (GameObject Wheel in WheelsGO)
+        {
+            WheelControl wc;
+            wc = Wheel.GetComponent<WheelControl>();
+            if (wc.grounded)
+            {
+                wheelsOnGround += 1;
+            }
+        }
+        //Debug.Log(wheelsOnGround);
+
+        //If mostly in the air
+        if (wheelsOnGround < 3)
+        {
+            //SteeringInput = CurrentGamepad.leftStick.ReadValue().x;
+            //transform.localRotation.x
+        }
+
     }
 }
