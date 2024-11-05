@@ -20,16 +20,14 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 378
-  BrakePower: 5000
+  BrakePower: 30000
   topSpeed: 187
-  accelMult: 1
+  accelMult: 7
   centreOfGravityOffsetf: -3
   MaxSteeringAngle: 30
   carName: Camaro
   carBrand: Chevrolet
-  AWD: 0
-  FWD: 0
-  RWD: 1
+  carDrivetrain: 1
   Speed: 6
   Auto: 1
   Manual: 0

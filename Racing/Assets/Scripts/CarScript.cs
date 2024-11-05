@@ -118,13 +118,13 @@ public class CarScript : MonoBehaviour
             if (car.Auto)
             {
                 //Shift Up
-                if(ShiftUp == 1 && shiftTime >= 0.5f)
+                if(ShiftUp == 1 && shiftTime >= 0.25f)
                 {
                     gearNum++;
                     shiftTime = 0.0f;
                 }
                 //Shift Down
-                if (ShiftDown == 1 && shiftTime >= 0.5f)
+                if (ShiftDown == 1 && shiftTime >= 0.25f)
                 {
                     gearNum--;
                     shiftTime = 0.0f;

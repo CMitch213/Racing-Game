@@ -20,16 +20,14 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 476
-  BrakePower: 30000
+  BrakePower: 90000
   topSpeed: 191
-  accelMult: 10000
+  accelMult: 10
   centreOfGravityOffsetf: -3
-  MaxSteeringAngle: 35
+  MaxSteeringAngle: 50
   carName: Acura
   carBrand: NSX
-  AWD: 0
-  FWD: 0
-  RWD: 1
+  carDrivetrain: 1
   Speed: 9
   Auto: 1
   Manual: 0
