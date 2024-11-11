@@ -76,6 +76,7 @@
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXClickMoveSmooth.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\PPFXWindow\PPFXRendererLayer.cs" />
+    <Compile Include="Assets\Assets\AssetStore\Mountain Terrain rocks and tree\Script\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Speedometer_Controller.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Scripts\Downforce.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXMeteor.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXClickMove.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Minimap_Cam.cs" />
+    <Compile Include="Assets\Assets\AssetStore\Mountain Terrain rocks and tree\Script\Camera\FlyCameraControl.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Wheel_Effects.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
   </ItemGroup>
@@ -107,6 +109,7 @@
     <None Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Shaders\AlphaSelfIllum.shader" />
     <None Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
+    <None Include="Assets\Assets\AssetStore\Nicrom\Shaders\Wind\Documentation\LPW_Log.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -115,9 +118,11 @@
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Assets\AssetStore\Nicrom\Shaders\Wind\Assets\Shaders\ASE\LPW_Vegetation.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
+    <None Include="Assets\Assets\AssetStore\Nicrom\Shaders\Wind\Assets\Shaders\ASE\LPW_Vegetation_Transparent.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
