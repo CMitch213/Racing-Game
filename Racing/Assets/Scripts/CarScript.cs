@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CarScript : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class CarScript : MonoBehaviour
     [SerializeField] private float ReverseInput;
     [SerializeField] private float dpadX;
     [SerializeField] private float dpadY;
+    private float cruiseT;
 
     //Headlights
     [Header("Headlights")]
@@ -56,10 +58,85 @@ public class CarScript : MonoBehaviour
     [Header("Sound Effects")]
     public AudioSource horn;
 
+    [Header("Misc")]
+    public bool CruiseOn;
+    public GameObject cruiseUI;
+    public float rpm = 0;
+    public int gear = 1;
+    public GameObject rpmNeedle;
+    public AudioSource carSound;
+    public float Pitch = 0.05f;
+
+    // Calculate RPM and Do Transmission/Gear Changes
+    void EngineRPM()
+    {
+        //Calculate RPM
+        if (gear >= 1 && dashGear != "N")
+        {
+            rpm = (kph * (90 / gear * 2)) + car.idleRPM;
+        }
+        //Let you rev bomb in Neutral
+        if(dashGear == "N")
+        {
+            //rpm = (ThrottleInput * car.maxRPM) + car.idleRPM;
+            if (ThrottleInput > 0.0f)
+            {
+                rpm = Mathf.Lerp(rpm, (ThrottleInput * car.maxRPM + (kph * 20)) + car.idleRPM, 50000.0f);
+            }
+            else
+            {
+                rpm = Mathf.Lerp(rpm, car.idleRPM, 50000.0f);
+            }
+            
+        }
+
+        //Make Engine Sound Follow RPM
+        Pitch = 0.7f + (rpm / car.maxRPM) * 2;
+        if (Pitch <= 0.7f)
+        {
+            Pitch = 0.7f;
+        }
+
+        //Set max and min rpm
+        if (rpm >= car.maxRPM)
+        {
+            rpm = car.maxRPM;
+        }
+        else if (rpm <= car.idleRPM)
+        {
+            rpm = car.idleRPM;
+        }
+
+        //Automatic Transmission 
+        if (gear < car.Speed && car.Auto)
+        {
+            if(rpm >= 3000 && gear < car.Speed)
+            {
+                gear++;
+                rpm -= 200;
+            }
+            if (rpm <= 1500 && gear > 1)
+            {
+                gear--;
+                rpm += 400;
+            }
+        }
+
+        if(gear > car.Speed)
+        {
+            gear = car.Speed;
+        }
+
+        //Speedometer
+        rpmNeedle.transform.localEulerAngles = new Vector3(0, 0, (rpm / car.maxRPM * 260.0f - 130.0f) * -1.0f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         driftParticle.Pause();
+        gear = 1;
+        Pitch = 0.05f;
 
         //On Run Setup Drivetrain Style
         switch (car.carDrivetrain) {
@@ -93,6 +170,11 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Calculate RPM
+        EngineRPM();
+        carSound.pitch = Pitch;
+
+
         // Input for Gamepad(s)
         Gamepad CurrentGamepad = Gamepad.current;
         if (CurrentGamepad == null) { Debug.Log("Reconnect Controller/Gamepad"); return; }
@@ -105,6 +187,25 @@ public class CarScript : MonoBehaviour
             {
                 PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult)));
             }
+        }
+        //Slowly remove speed if not pressing gas
+        if (ThrottleInput == 0 && CruiseOn == false)
+        {
+            rb.drag = 0.15f;
+        }
+        else
+        {
+            rb.drag = 0f;
+        }
+        
+        //Cruise Control
+        if (CruiseOn)
+        {
+            cruiseUI.SetActive(true);
+        }
+        else
+        {
+            cruiseUI.SetActive(false);
         }
 
         shiftTime += Time.deltaTime;
@@ -377,13 +478,21 @@ public class CarScript : MonoBehaviour
         //D-Pad Input
         dpadX = Gamepad.current.dpad.x.ReadValue();
         dpadY = Gamepad.current.dpad.y.ReadValue();
+
+        cruiseT += Time.deltaTime;
         if (dpadX > 0f)
         {
-            // player currently holds right
+            //Player Holding Right
+            if (cruiseT > 0.4f)
+            {
+                CruiseOn = !CruiseOn;
+                cruiseT = 0;
+            }
         }
         if (dpadX < 0f)
         {
             // player currently holds left
+
         }
         if (dpadY > 0f)
         {

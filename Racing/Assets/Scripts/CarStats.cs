@@ -15,6 +15,8 @@ public class CarStats : ScriptableObject
     public AnimationCurve horsepowerCurve;          //Currently Unused
     public float EngineTorque;
     public float BrakePower;
+    public int idleRPM;
+    public int maxRPM;
     [Tooltip("Car top speed is in mp/h")]
     public float topSpeed;
     public float accelMult;
