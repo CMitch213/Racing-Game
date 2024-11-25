@@ -113,12 +113,12 @@ public class CarScript : MonoBehaviour
             if(rpm >= 3000 && gear < car.Speed)
             {
                 gear++;
-                rpm -= 200;
+                rpm /= 1.7f;
             }
             if (rpm <= 1500 && gear > 1)
             {
                 gear--;
-                rpm += 400;
+                rpm *= 1.7f;
             }
         }
 
