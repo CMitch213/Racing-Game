@@ -75,11 +75,11 @@
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Car_Controller.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXClickMoveSmooth.cs" />
+    <Compile Include="Assets\Scripts\CollisionDetector.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\PPFXWindow\PPFXRendererLayer.cs" />
     <Compile Include="Assets\Assets\AssetStore\Mountain Terrain rocks and tree\Script\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Speedometer_Controller.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
-    <Compile Include="Assets\Scripts\Downforce.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXChainReactionInspector.cs" />
     <Compile Include="Assets\Scripts\WheelControl.cs" />
