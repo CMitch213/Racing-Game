@@ -197,7 +197,7 @@ public class CarScript : MonoBehaviour
             {
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
-                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult)));
+                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 2))));
                 }
             }
             //Slowly remove speed if not pressing gas
@@ -282,7 +282,7 @@ public class CarScript : MonoBehaviour
             {
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
-                    PWheel.motorTorque = -(car.EngineTorque * (car.hp / (20 - car.accelMult))) * ThrottleInput;
+                    PWheel.motorTorque = -(car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 4)))) * ThrottleInput;
                 }
             }
 

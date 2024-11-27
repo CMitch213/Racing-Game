@@ -24,7 +24,7 @@ MonoBehaviour:
   idleRPM: 620
   maxRPM: 6600
   topSpeed: 187
-  accelMult: 7
+  accelMult: 15
   centreOfGravityOffsetf: -3
   MaxSteeringAngle: 30
   carName: Camaro

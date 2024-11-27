@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
+  m_Name: Dakar
+  m_EditorClassIdentifier: 
+  hp: 473
+  horsepowerCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  EngineTorque: 420
+  BrakePower: 50000
+  idleRPM: 850
+  maxRPM: 7500
+  topSpeed: 240
+  accelMult: 20
+  centreOfGravityOffsetf: 0
+  MaxSteeringAngle: 30
+  carName: 911 Dakar
+  carBrand: Porsche
+  carDrivetrain: 2
+  Speed: 8
+  Auto: 1
+  Manual: 0
