@@ -25,7 +25,7 @@ MonoBehaviour:
   maxRPM: 7500
   topSpeed: 240
   accelMult: 20
-  centreOfGravityOffsetf: 0
+  centreOfGravityOffsetf: -3
   MaxSteeringAngle: 30
   carName: 911 Dakar
   carBrand: Porsche

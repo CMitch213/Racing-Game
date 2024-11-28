@@ -24,7 +24,7 @@ MonoBehaviour:
   idleRPM: 720
   maxRPM: 7200
   topSpeed: 116
-  accelMult: 21
+  accelMult: 18
   centreOfGravityOffsetf: 0
   MaxSteeringAngle: 35
   carName: Mazda
