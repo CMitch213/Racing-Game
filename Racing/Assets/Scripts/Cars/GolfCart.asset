@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
   m_Name: GolfCart
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 12
   horsepowerCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  EngineTorque: 0
-  BrakePower: 0
-  idleRPM: 0
-  maxRPM: 0
-  topSpeed: 0
-  accelMult: 0
-  centreOfGravityOffsetf: 0
-  MaxSteeringAngle: 0
-  carName: 
-  carBrand: 
-  carDrivetrain: 0
-  Speed: 0
-  Auto: 0
+  EngineTorque: 30
+  BrakePower: 40000
+  idleRPM: 400
+  maxRPM: 1300
+  topSpeed: 26
+  accelMult: 15
+  centreOfGravityOffsetf: -2
+  MaxSteeringAngle: 35
+  carName: Cart
+  carBrand: Golf
+  carDrivetrain: 2
+  Speed: 1
+  Auto: 1
   Manual: 0
