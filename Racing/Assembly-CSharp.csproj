@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\Assets\CarModels\Ford\F150-Raptor\source\readme.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\README.txt" />
@@ -120,6 +121,7 @@
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Assets\CarModels\Porsche\1985Carrera\source\License.txt" />
     <None Include="Assets\Assets\UI\Font\misc\superbrigade-e69c.txt" />
     <None Include="Assets\Assets\AssetStore\Nicrom\Shaders\Wind\Assets\Shaders\ASE\LPW_Vegetation.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

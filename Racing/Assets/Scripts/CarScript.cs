@@ -68,6 +68,7 @@ public class CarScript : MonoBehaviour
     public GameObject cruiseUI;
     public float rpm = 0;
     public int gear = 1;
+    public TMP_Text transmissionText;
     public GameObject rpmNeedle;
     public float Pitch = 0.05f;
     bool carIsOn = false;
@@ -118,17 +119,20 @@ public class CarScript : MonoBehaviour
         //Automatic Transmission 
         if (car.Auto && dashGear != "N" && dashGear != "P")
         {
-            if(rpm >= 3000 && gear < car.Speed)
+            if(rpm / car.maxRPM >= 0.35 && gear < car.Speed)
             {
                 gear++;
                 rpm /= 1.7f;
             }
-            if (rpm <= 1500 && gear > 1)
+            if (rpm / car.maxRPM <= 0.28 && gear > 1)
             {
                 gear--;
                 rpm *= 1.7f;
             }
         }
+
+        // Display what gear you currently are in
+        transmissionText.text = gear.ToString();
 
         if(gear > car.Speed)
         {
