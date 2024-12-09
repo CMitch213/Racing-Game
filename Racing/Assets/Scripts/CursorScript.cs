@@ -6,6 +6,15 @@ using UnityEngine.InputSystem;
 public class CursorScript : MonoBehaviour
 {
     [SerializeField] private float pauseInput;
+    public bool startVisible;
+
+    void Start()
+    {
+        if (startVisible)
+        {
+            Cursor.visible = true;
+        }
+    }
 
     void Update()
     {

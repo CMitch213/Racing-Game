@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Reset.cs" />
     <Compile Include="Assets\Scripts\CursorScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelect.cs" />
+    <Compile Include="Assets\Scripts\CarSelectMenu.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXShockwave.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\PPFXWindow\PPFXWindow.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
