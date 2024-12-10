@@ -7,22 +7,39 @@ using UnityEngine;
 public class Lap : MonoBehaviour
 {
 
+    [Header("In-Game")]
     public TMP_Text timeGO;
     float time = 0;
     public TMP_Text lapGO;
     int lap = 0;
     public int count = 0;
+    int minutes;
+    int seconds;
+    [Header("Win Screen")]
+    bool hasWon = false;
+    public GameObject winScreen, gameUI;
+    public TMP_Text lap1GO, lap2GO, lap3GO;
+    string lap1time, lap2time, lap3time;
+    
 
 
     // Update is called once per frame
     void Update()
     {
-        // Add time
-        time += Time.deltaTime;
+        if (!hasWon)
+        {
+            // Add time
+            time += Time.deltaTime;
+        }
+        else
+        {
+            winScreen.SetActive(true);
+            gameUI.SetActive(false);
+        }
 
         // Take time and convert to min s and seconds
-        int minutes = Mathf.FloorToInt(time / 60F);
-        int seconds = Mathf.FloorToInt(time - minutes * 60);
+        minutes = Mathf.FloorToInt(time / 60F);
+        seconds = Mathf.FloorToInt(time - minutes * 60);
 
         //Format mins and secs into a string
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
@@ -30,6 +47,15 @@ public class Lap : MonoBehaviour
         //Set the text of the GUI
         timeGO.text = niceTime;
         lapGO.text = lap.ToString();
+
+        if (lap >= 3)
+        {
+            hasWon = true;
+            lap1GO.text = lap1time;
+            lap2GO.text = lap2time;
+            lap3GO.text = lap3time;
+        }
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,7 +64,22 @@ public class Lap : MonoBehaviour
         if (other.CompareTag("1") && count == 0)
         {
             count = 1;
+
+            if (lap == 1)
+            {
+                lap1time = string.Format("{0:0}:{1:00}", minutes, seconds);
+            }
+            else if (lap == 2)
+            {
+                lap2time = string.Format("{0:0}:{1:00}", minutes, seconds);
+            }
+            else if (lap == 3)
+            {
+                lap3time = string.Format("{0:0}:{1:00}", minutes, seconds);
+            }
+
             lap++;
+
         }
         else if (other.CompareTag("2") && count == 1)
         {
