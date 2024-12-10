@@ -6126,6 +6126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseInput: 0
+  startVisible: 0
 --- !u!114 &8081317544936920089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6166,6 +6167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeGO: {fileID: 5292223660326810702}
   lapGO: {fileID: 5775922436955423471}
+  count: 0
 --- !u!1 &4184874003370804569
 GameObject:
   m_ObjectHideFlags: 0
@@ -11685,10 +11687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 950, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

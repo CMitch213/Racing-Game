@@ -52,8 +52,5 @@ public class Lap : MonoBehaviour
         {
             count = 0;
         }
-
-
-
     }
 }

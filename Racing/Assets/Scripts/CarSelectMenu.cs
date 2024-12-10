@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SceneManagement;
 
 public class CarSelectMenu : MonoBehaviour
 {
@@ -79,6 +80,23 @@ public class CarSelectMenu : MonoBehaviour
         raptor.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+    }
+
+    public void Rand()
+    {
+        int select = Random.Range(1, 8);    //Set max value 1 highger than possible
+        if (select == 1) { Camaro(); }
+        if (select == 2) { Miata(); }
+        if (select == 3) { Dakar(); }
+        if (select == 4) { RS6(); }
+        if (select == 5) { NineEleven(); }
+        if (select == 6) { Tractor(); }
+        if (select == 7) { Raptor(); }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
