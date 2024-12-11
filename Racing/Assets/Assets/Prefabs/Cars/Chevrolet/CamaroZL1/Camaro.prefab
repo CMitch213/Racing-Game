@@ -7545,11 +7545,12 @@ MonoBehaviour:
   timeGO: {fileID: 7663570530340726852}
   lapGO: {fileID: 8273051445988551886}
   count: 0
-  winScreen: {fileID: 0}
-  gameUI: {fileID: 3484560530358240366}
+  winScreen: {fileID: 3484560530358240366}
+  gameUI: {fileID: 5734987142808425054}
   lap1GO: {fileID: 2226669498683077117}
   lap2GO: {fileID: 702587986223351594}
   lap3GO: {fileID: 6656798165144054775}
+  totalGO: {fileID: 7446377337701303168}
 --- !u!1 &3743996071361740579
 GameObject:
   m_ObjectHideFlags: 0

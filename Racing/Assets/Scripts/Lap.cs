@@ -11,14 +11,14 @@ public class Lap : MonoBehaviour
     public TMP_Text timeGO;
     float time = 0;
     public TMP_Text lapGO;
-    int lap = 0;
+    int lap; // How many laps complete you start with
     public int count = 0;
     int minutes;
     int seconds;
     [Header("Win Screen")]
     bool hasWon = false;
     public GameObject winScreen, gameUI;
-    public TMP_Text lap1GO, lap2GO, lap3GO;
+    public TMP_Text lap1GO, lap2GO, lap3GO, totalGO;
     string lap1time, lap2time, lap3time;
     
 
@@ -46,6 +46,7 @@ public class Lap : MonoBehaviour
 
         //Set the text of the GUI
         timeGO.text = niceTime;
+        totalGO.text = niceTime;
         lapGO.text = lap.ToString();
 
         if (lap >= 3)
