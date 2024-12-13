@@ -1,0 +1,21 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _
+Ka 0.000000 0.000000 0.000000
+Kd 0.552941 0.603922 0.615686
+Ks 0.330000 0.330000 0.330000
+map_Kd smkdsrr_thwomp/_.png
+
+newmtl _1
+Ka 0.000000 0.000000 0.000000
+Kd 0.470588 0.509804 0.517647
+Ks 0.330000 0.330000 0.330000
+map_Kd smkdsrr_thwomp/_1.png
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+

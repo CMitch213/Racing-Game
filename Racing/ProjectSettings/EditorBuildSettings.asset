@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealLifeTracks/DragStrip.unity
     guid: acd4b4a71d2e73e4383423bff14df92e
+  - enabled: 1
+    path: Assets/Scenes/RealLifeTracks/Rainbow-Road.unity
+    guid: 50771d98997548948933f797ffed00fd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d6ba439bd76d6cf4eaa6e78f9b5cb8ff, type: 2}

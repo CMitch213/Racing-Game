@@ -98,6 +98,7 @@
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXClickMove.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Minimap_Cam.cs" />
     <Compile Include="Assets\Assets\AssetStore\Mountain Terrain rocks and tree\Script\Camera\FlyCameraControl.cs" />
+    <Compile Include="Assets\Scripts\RainbowResetBox.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Wheel_Effects.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
   </ItemGroup>

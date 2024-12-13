@@ -1,0 +1,39 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _1
+Ka 0.000000 0.000000 0.000000
+Kd 0.552941 0.478431 0.623529
+Ks 0.330000 0.330000 0.330000
+map_Kd smkds_rainbowroad/_1.png
+
+newmtl _2
+Ka 0.000000 0.000000 0.000000
+Kd 0.925490 0.941176 0.941176
+Ks 0.330000 0.330000 0.330000
+map_Kd smkds_rainbowroad/_2.png
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _3
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.784314 0.043137
+Ks 0.330000 0.330000 0.330000
+map_Kd smkds_rainbowroad/_3.png
+
+newmtl _
+Ka 0.000000 0.000000 0.000000
+Kd 0.113725 0.121569 0.074510
+Ks 0.330000 0.330000 0.330000
+map_Kd smkds_rainbowroad/_.png
+
+newmtl _4
+Ka 0.000000 0.000000 0.000000
+Kd 0.003922 0.007843 0.039216
+Ks 0.330000 0.330000 0.330000
+map_Kd smkds_rainbowroad/_4.png
+

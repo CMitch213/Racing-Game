@@ -17,4 +17,8 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("DragStrip");
     }
+    public void LoadRainbow()
+    {
+        SceneManager.LoadScene("Rainbow-Road");
+    }
 }
