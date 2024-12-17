@@ -314,6 +314,7 @@ MonoBehaviour:
   nineEleven: {fileID: 0}
   tractor: {fileID: 0}
   raptor: {fileID: 0}
+  bike: {fileID: 0}
 --- !u!1 &380848924669894829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2051,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8121817579751234971}
         m_TargetAssemblyTypeName: CarSelectMenu, Assembly-CSharp
-        m_MethodName: Raptor
+        m_MethodName: Bike
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
