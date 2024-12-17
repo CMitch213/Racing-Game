@@ -20,12 +20,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 243
-  BrakePower: 35000
+  BrakePower: 120000
   idleRPM: 650
   maxRPM: 7200
   topSpeed: 261
   accelMult: 15
-  centreOfGravityOffsetf: 0
+  centreOfGravityOffsetf: -4
   MaxSteeringAngle: 30
   carName: 930
   carBrand: Porsche

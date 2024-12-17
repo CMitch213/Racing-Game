@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17995678, g: 0.0523232, b: 0.03195622, a: 1}
+  m_IndirectSpecularColor: {r: 0.17994025, g: 0.052309874, b: 0.031877812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -447,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &681360734
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4188,6 +4188,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &628184137870226964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421981490383052854, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+  m_PrefabInstance: {fileID: 3905271014158039276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &643613148672737494
 Transform:
   m_ObjectHideFlags: 0
@@ -7169,6 +7174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarSelectMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 278681037765209630, guid: 990704ce8aae0024cbd9dbbaa3d64be2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3123915757056349183, guid: 990704ce8aae0024cbd9dbbaa3d64be2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7257,6 +7266,10 @@ PrefabInstance:
       propertyPath: rs6
       value: 
       objectReference: {fileID: 211407230}
+    - target: {fileID: 8121817579751234971, guid: 990704ce8aae0024cbd9dbbaa3d64be2, type: 3}
+      propertyPath: bike
+      value: 
+      objectReference: {fileID: 628184137870226964}
     - target: {fileID: 8121817579751234971, guid: 990704ce8aae0024cbd9dbbaa3d64be2, type: 3}
       propertyPath: dakar
       value: 
@@ -19790,6 +19803,67 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &3905271014158039276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.108727
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 194.39928
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 868.1611
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088228458621886611, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421981490383052854, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_Name
+      value: Bike
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421981490383052854, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2deee21e8ad7d9d4094fb96bdb4d0a47, type: 3}
 --- !u!1 &3905671967130004204
 GameObject:
   m_ObjectHideFlags: 0
@@ -57897,6 +57971,7 @@ SceneRoots:
   - {fileID: 3756022318518992787}
   - {fileID: 4375214192411082087}
   - {fileID: 5815713205164246461}
+  - {fileID: 3905271014158039276}
   - {fileID: 272568263}
   - {fileID: 681360736}
   - {fileID: 1282399758660394734}

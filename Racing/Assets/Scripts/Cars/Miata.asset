@@ -20,12 +20,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 100
-  BrakePower: 20000
+  BrakePower: 120000
   idleRPM: 720
   maxRPM: 7200
   topSpeed: 116
   accelMult: 18
-  centreOfGravityOffsetf: 0
+  centreOfGravityOffsetf: -2
   MaxSteeringAngle: 35
   carName: Mazda
   carBrand: MX-5

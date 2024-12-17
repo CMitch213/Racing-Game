@@ -20,12 +20,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 420
-  BrakePower: 50000
+  BrakePower: 500000
   idleRPM: 850
   maxRPM: 7500
   topSpeed: 240
   accelMult: 20
-  centreOfGravityOffsetf: -3
+  centreOfGravityOffsetf: -5
   MaxSteeringAngle: 30
   carName: 911 Dakar
   carBrand: Porsche

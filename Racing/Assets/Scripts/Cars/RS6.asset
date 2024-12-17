@@ -20,7 +20,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EngineTorque: 627
-  BrakePower: 90000
+  BrakePower: 150000
   idleRPM: 784
   maxRPM: 6250
   topSpeed: 200

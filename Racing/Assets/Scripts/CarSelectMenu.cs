@@ -17,6 +17,7 @@ public class CarSelectMenu : MonoBehaviour
     public GameObject nineEleven;
     public GameObject tractor;
     public GameObject raptor;
+    public GameObject bike;
 
     private void Start()
     {
@@ -82,9 +83,16 @@ public class CarSelectMenu : MonoBehaviour
         thisMenu.SetActive(false);
     }
 
+    public void Bike()
+    {
+        bike.SetActive(true);
+        cam.SetActive(false);
+        thisMenu.SetActive(false);
+    }
+
     public void Rand()
     {
-        int select = Random.Range(1, 8);    //Set max value 1 highger than possible
+        int select = Random.Range(1, 9);    //Set max value 1 highger than possible
         if (select == 1) { Camaro(); }
         if (select == 2) { Miata(); }
         if (select == 3) { Dakar(); }
@@ -92,6 +100,7 @@ public class CarSelectMenu : MonoBehaviour
         if (select == 5) { NineEleven(); }
         if (select == 6) { Tractor(); }
         if (select == 7) { Raptor(); }
+        if (select == 8) { Bike(); }
     }
 
     public void MainMenu()
