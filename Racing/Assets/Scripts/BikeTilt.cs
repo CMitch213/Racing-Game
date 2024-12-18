@@ -26,13 +26,20 @@ public class BikeTilt : MonoBehaviour
         float currentAngleX = transform.eulerAngles.x;
         if (currentAngleX > 180) currentAngleX -= 360; // Convert 0-360 to -180 to 180 range
 
+        //Tilt back
         if (SteeringInput <= -0.33 && currentAngleX < 20.0f)
         {
             transform.Rotate(-SteeringInput * 50.0f * Time.deltaTime, 0, 0);
         }
+        //Slowly go down if in deadzone
         else if (SteeringInput > -0.33 && currentAngleX > 0.0f)
         {
             transform.Rotate(-50 * Time.deltaTime, 0, 0);
+        }
+        //Tilt forward
+        else if (SteeringInput > 0.4 && currentAngleX > 0.0f)
+        {
+            transform.Rotate(SteeringInput * -125 * Time.deltaTime, 0, 0);
         }
     }
 }
