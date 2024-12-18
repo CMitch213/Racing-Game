@@ -29,7 +29,7 @@ MonoBehaviour:
   MaxSteeringAngle: 40
   carName: Motorcycle
   carBrand: N/A
-  carDrivetrain: 1
+  carDrivetrain: 2
   Speed: 6
   Auto: 1
   Manual: 0
