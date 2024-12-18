@@ -21,4 +21,12 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("Rainbow-Road");
     }
+    public void Ran()
+    {
+        int select = Random.Range(1, 5);    //Set max value 1 highger than possible
+        if (select == 1) { LoadNurbur(); }
+        if (select == 2) { LoadOval(); }
+        if (select == 3) { LoadDrag(); }
+        if (select == 4) { LoadRainbow(); }
+    }
 }
