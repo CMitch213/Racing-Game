@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealLifeTracks/Rainbow-Road.unity
     guid: 50771d98997548948933f797ffed00fd
+  - enabled: 1
+    path: Assets/Scenes/RealLifeTracks/Toads-Harbour.unity
+    guid: 1d8a1bd71c19f774aabddfbe36f095e8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d6ba439bd76d6cf4eaa6e78f9b5cb8ff, type: 2}
