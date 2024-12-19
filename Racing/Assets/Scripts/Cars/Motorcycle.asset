@@ -26,7 +26,7 @@ MonoBehaviour:
   topSpeed: 112
   accelMult: 20
   centreOfGravityOffsetf: 0
-  MaxSteeringAngle: 40
+  MaxSteeringAngle: 30
   carName: Motorcycle
   carBrand: N/A
   carDrivetrain: 2

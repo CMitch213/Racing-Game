@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CarScript : MonoBehaviour
 {
-
+    [Header("Car and UI")]
     public CarStats car;
     public TMP_Text Speed_Text;
     public Rigidbody rb;
@@ -15,6 +15,9 @@ public class CarScript : MonoBehaviour
     bool grounded = true;
     float steerangle;
 
+    [Space(10)]
+
+    [Header("Wheels")]
     public List<WheelCollider> SteeringWheels;
     public List<WheelCollider> PoweredWheels;
     public List<GameObject> WheelsGO;
@@ -23,6 +26,9 @@ public class CarScript : MonoBehaviour
     public List<WheelCollider> RearWheels;
     public int wheelsOnGround;
 
+    [Space(10)]
+
+    [Header("Inputs")]
     [SerializeField] private float ThrottleInput;
     [SerializeField] private float BrakeInput;
     [SerializeField] private float HandBrakeInput;
@@ -31,6 +37,8 @@ public class CarScript : MonoBehaviour
     [SerializeField] private float dpadX;
     [SerializeField] private float dpadY;
     private float cruiseT;
+
+    [Space(10)]
 
     //Headlights
     [Header("Headlights")]
@@ -41,6 +49,8 @@ public class CarScript : MonoBehaviour
     public int headLightCycle = 1;
     [SerializeField] private float HeadlightToggle;
 
+    [Space(10)]
+
     //Shifting
     [Header("Shifting")]
     [SerializeField] private float ShiftUp;
@@ -50,9 +60,14 @@ public class CarScript : MonoBehaviour
     public TMP_Text gearText;
     public float shiftTime = 1;
 
+    [Space(10)]
+
     //Particles
     [Header("Particles")]
     public ParticleSystem driftParticle;
+    public TrailRenderer[] skidMarks;
+
+    [Space(10)]
 
     //Sounds
     [Header("Audio Effects")]
@@ -62,6 +77,8 @@ public class CarScript : MonoBehaviour
     public AudioClip handbrakeClip;
     public AudioSource headlightSound;
     public AudioSource startSound;
+
+    [Space(10)]
 
     [Header("Misc")]
     public bool CruiseOn;
@@ -79,7 +96,8 @@ public class CarScript : MonoBehaviour
     // Calculate RPM and Do Transmission/Gear Changes
     void EngineRPM()
     {
-        //Calculate RPM
+        // Calculate RPM
+        // Check that you're actually in a gear
         if (gear >= 1 && dashGear != "N")
         {
             rpm = (kph * (90 / gear * 2)) + car.idleRPM;
@@ -88,10 +106,12 @@ public class CarScript : MonoBehaviour
         if(dashGear == "N")
         {
             //rpm = (ThrottleInput * car.maxRPM) + car.idleRPM;
+            // Rev that ho in Neutral
             if (ThrottleInput > 0.0f)
             {
                 rpm = Mathf.Lerp(rpm, (ThrottleInput * car.maxRPM + (kph * 20)) + car.idleRPM, 50000.0f);
             }
+            // Slowly go back to Idle
             else
             {
                 rpm = Mathf.Lerp(rpm, car.idleRPM, 50000.0f);
@@ -119,11 +139,13 @@ public class CarScript : MonoBehaviour
         //Automatic Transmission 
         if (car.Auto && dashGear != "N" && dashGear != "P")
         {
+            // Upshift after a specfic rpm
             if(rpm / car.maxRPM >= 0.35 && gear < car.Speed)
             {
                 gear++;
                 rpm /= 1.7f;
             }
+            // Downshift at a specific rpm
             if (rpm / car.maxRPM <= 0.28 && gear > 1)
             {
                 gear--;
@@ -134,24 +156,28 @@ public class CarScript : MonoBehaviour
         // Display what gear you currently are in
         transmissionText.text = gear.ToString();
 
+        // Don't shift past your maximum gear, duh
         if(gear > car.Speed)
         {
             gear = car.Speed;
         }
 
         //Speedometer
+        // Move it according to your max and min rpm (it says 0-8k in UI but thats bullshit)
         rpmNeedle.transform.localEulerAngles = new Vector3(0, 0, (rpm / car.maxRPM * 260.0f - 130.0f) * -1.0f);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //Reset Values
         driftParticle.Pause();
         gear = 1;
         Pitch = 0.05f;
 
         //On Run Setup Drivetrain Style
         switch (car.carDrivetrain) {
+            //If you're in a FWD
             case drivetrainType.FWD:
                 foreach (WheelCollider FWheel in FrontWheels)
                 {
@@ -160,6 +186,7 @@ public class CarScript : MonoBehaviour
 
                 break;
 
+            //If you're in a RWD
             case drivetrainType.RWD:
                 foreach (WheelCollider RWheel in RearWheels)
                 {
@@ -168,6 +195,7 @@ public class CarScript : MonoBehaviour
 
                 break;
 
+            //If you're in a AWD
             case drivetrainType.AWD:
                 foreach (WheelCollider Wheel in Wheels)
                 {
@@ -176,7 +204,6 @@ public class CarScript : MonoBehaviour
 
                 break;
         }
-
     }
 
     // Update is called once per frame
@@ -186,9 +213,12 @@ public class CarScript : MonoBehaviour
         Gamepad CurrentGamepad = Gamepad.current;
         if (CurrentGamepad == null) { Debug.Log("Reconnect Controller/Gamepad"); return; }
 
+        //If the car is running
         if (carIsOn)
         {
+            // Turn on the exhaust fumes
             exhaust.SetActive(true);
+            // Make it so it doesnt ask you to turn on the car
             carOnUI.SetActive(false);
 
             //Calculate RPM
@@ -209,6 +239,7 @@ public class CarScript : MonoBehaviour
             {
                 rb.drag = 0.15f;
             }
+            // If cruise control is on or if you're accelerating do not slowly remove speed
             else
             {
                 rb.drag = 0f;
@@ -217,17 +248,21 @@ public class CarScript : MonoBehaviour
             //Cruise Control
             if (CruiseOn)
             {
+                // Enable cruise control UI
                 cruiseUI.SetActive(true);
             }
             else
             {
+                // Disable cruise control UI
                 cruiseUI.SetActive(false);
             }
 
+            //Shifting Time
             shiftTime += Time.deltaTime;
             //Shift
             if (car.Auto)
             {
+                //Inputs
                 ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
                 ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
 
@@ -340,6 +375,7 @@ public class CarScript : MonoBehaviour
 
 
             //Toggle Headlights
+            // Mapped to Y button or whatever that would be on playstation
             HeadlightToggle = CurrentGamepad.buttonNorth.ReadValue();
             if (HeadlightToggle == 1 && toggleTime >= 0.4f)
             {
@@ -351,6 +387,7 @@ public class CarScript : MonoBehaviour
                 //Headlights off
                 if (headLightCycle == 0)
                 {
+                    //Turns lights off duh
                     headlightL.intensity = 0;
                     headlightR.intensity = 0;
                     headlightsEnabled = false;
@@ -364,6 +401,7 @@ public class CarScript : MonoBehaviour
                 //Normal
                 else if (headLightCycle == 1)
                 {
+                    //Set lights to normal
                     headlightL.intensity = 2;
                     headlightL.range = 20;
                     headlightR.intensity = 2;
@@ -379,6 +417,7 @@ public class CarScript : MonoBehaviour
                 //High Beams
                 else if (headLightCycle == 2)
                 {
+                    // MAXIMUM POWER RAHHH
                     headlightL.intensity = 4;
                     headlightL.range = 60;
                     headlightR.intensity = 4;
@@ -395,7 +434,7 @@ public class CarScript : MonoBehaviour
         }
         else
         {
-            // Car is currently off
+            // Car is currently off, reset values
             headLightCycle = 0;
             headlightL.intensity = 0;
             headlightR.intensity = 0;
@@ -453,12 +492,19 @@ public class CarScript : MonoBehaviour
         HandBrakeInput = CurrentGamepad.aButton.ReadValue();
         if (HandBrakeInput == 1.0f)
         {
+            //Draw Skid Marks if you're going faster than 15 mph
+            if (kph >= 15.0f)
+            {
+                DrawSkidMarks();
+            }
+            // Play handbrake sound
             if (!isHandBraking)
             {
                 handbrakeSound.PlayOneShot(handbrakeClip, 1.0f);
             }
             isHandBraking = true;
 
+            //Change the wheel friction
             foreach (WheelCollider RWheel in RearWheels)
             {
                 //Lower Friction
@@ -473,12 +519,18 @@ public class CarScript : MonoBehaviour
                 RWheel.brakeTorque = BrakeInput * car.BrakePower * 50;
             }
 
+            //Increase how much you can turn, bc drifts are awesome
             steerangle *= 2.0f;
+            //Play Particles
             driftParticle.Play();
         }
         //Reset after using handbrake
         else
         {
+            //Stop drawing the skid marks, duh
+            StopDrawSkidMarks();
+
+            //Reset stuff
             isHandBraking = false;
             foreach (WheelCollider RWheel in RearWheels)
             {
@@ -497,7 +549,9 @@ public class CarScript : MonoBehaviour
                 RWheel.sidewaysFriction = Wfc;
             }
 
-            steerangle = car.MaxSteeringAngle * (1 - (kph / car.topSpeed));
+            //Reset your max steering angle
+            steerangle = (car.MaxSteeringAngle * (1 - (kph / car.topSpeed))) + 4;
+            //Stop playing the particles
             driftParticle.Pause();
             driftParticle.Clear();
         }
@@ -505,6 +559,7 @@ public class CarScript : MonoBehaviour
         //Steer car
         SteeringInput = CurrentGamepad.leftStick.ReadValue().x;
         steerangle = (car.MaxSteeringAngle * (1 - (kph / car.topSpeed))) + 4;
+        //Actually do the steering
         foreach (WheelCollider SWheel in SteeringWheels)
         {
             SWheel.steerAngle = Mathf.Lerp(-steerangle, steerangle, SteeringInput + 0.5f);
@@ -515,6 +570,7 @@ public class CarScript : MonoBehaviour
         dpadX = Gamepad.current.dpad.x.ReadValue();
         dpadY = Gamepad.current.dpad.y.ReadValue();
 
+        //Timers
         toggleTime += Time.deltaTime;
         cruiseT += Time.deltaTime;
         if (dpadX > 0f)
@@ -522,6 +578,7 @@ public class CarScript : MonoBehaviour
             //Player Holding Right
             if (cruiseT > 0.4f)
             {
+                //Enable Cruise Control
                 CruiseOn = !CruiseOn;
                 cruiseT = 0;
             }
@@ -543,6 +600,7 @@ public class CarScript : MonoBehaviour
         if (dpadY > 0f)
         {
             // player currently holds up
+            //Enable Horn
             horn.Play();
         }
         if (dpadY < 0f)
@@ -550,7 +608,7 @@ public class CarScript : MonoBehaviour
             // player currently holds down
         }
 
-        //Spedometer
+        //Spedometer, says kph is actually mph
         kph = rb.velocity.magnitude;
         Speed_Text.text = ((int)(kph)).ToString();
 
@@ -573,5 +631,20 @@ public class CarScript : MonoBehaviour
             //transform.localRotation.x
         }
 
+    }
+
+    void DrawSkidMarks()
+    {
+        foreach(TrailRenderer T in skidMarks)
+        {
+            T.emitting = true;
+        }
+    }
+    void StopDrawSkidMarks()
+    {
+        foreach (TrailRenderer T in skidMarks)
+        {
+            T.emitting = false;
+        }
     }
 }
