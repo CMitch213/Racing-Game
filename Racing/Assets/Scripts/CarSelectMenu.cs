@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CarSelectMenu : MonoBehaviour
 {
+    //Variables
     [Header("Not Cars")]
     public GameObject cam;
     public GameObject thisMenu;
@@ -100,6 +101,7 @@ public class CarSelectMenu : MonoBehaviour
         thisMenu.SetActive(false);
     }
 
+    //Random fucntion
     public void Rand()
     {
         int select = Random.Range(1, 10);    //Set max value 1 highger than possible
@@ -114,6 +116,7 @@ public class CarSelectMenu : MonoBehaviour
         if (select == 9) { McQueen(); }
     }
 
+    //If you hit HOME
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");

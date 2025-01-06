@@ -77,6 +77,7 @@ public class CarScript : MonoBehaviour
     public AudioClip handbrakeClip;
     public AudioSource headlightSound;
     public AudioSource startSound;
+    public AudioSource driftSound;
 
     [Space(10)]
 
@@ -227,7 +228,14 @@ public class CarScript : MonoBehaviour
 
             //Use Gas
             ThrottleInput = CurrentGamepad.rightTrigger.ReadValue();
-            if (dashGear == "D")
+            if (dashGear == "D" && car.Auto)
+            {
+                foreach (WheelCollider PWheel in PoweredWheels)
+                {
+                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 2))));
+                }
+            }
+            if(gearNum >= 1 && car.Manual)
             {
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
@@ -308,6 +316,58 @@ public class CarScript : MonoBehaviour
                     if (gearNum < 1) { gearNum = 1; }
                     if (gearNum > 4) { gearNum = 4; }
                 }
+            }
+            //Manual Shifting
+            if (car.Manual)
+            {
+                //Inputs
+                ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
+                ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
+
+                //Shifts Up
+                if (ShiftUp == 1.0f && shiftTime >= 0.25f)
+                {
+                    gearNum++;
+                    shiftTime = 0.0f;
+
+                    if (gearNum >= 1)
+                    {
+                        rpm *= 1.7f;
+                    }
+                }
+                //Shifts Down
+                if (ShiftDown == 1.0f && shiftTime >= 0.25f)
+                {
+                    gearNum--;
+                    shiftTime = 0.0f;
+                    if (gearNum > 1)
+                    {
+                        rpm /= 1.7f;
+                    }
+                }
+
+                //Neutral at 0
+                if (gearNum == 0)
+                {
+                    dashGear = "N";
+                    gearText.text = dashGear;
+                }
+                //Reverse at -1
+                else if(gearNum == -1)
+                {
+                    dashGear = "R";
+                    gearText.text = dashGear;
+                }
+                //Actual Gears
+                else
+                {
+                    dashGear = gearNum.ToString();
+                    gearText.text = dashGear;
+                }
+
+                //Don't let go below park or above drive
+                if (gearNum < -1) { gearNum = -1; }
+                if (gearNum > car.Speed) { gearNum = car.Speed; }
             }
 
             //Limit Speed
@@ -492,10 +552,16 @@ public class CarScript : MonoBehaviour
         HandBrakeInput = CurrentGamepad.aButton.ReadValue();
         if (HandBrakeInput == 1.0f)
         {
-            //Draw Skid Marks if you're going faster than 15 mph
+            //Do effects for if you're going faster than 15 mph
             if (kph >= 15.0f)
             {
+                //Draw the skids
                 DrawSkidMarks();
+
+                //Drift Sound effect play
+                Debug.Log("Playing Drift Sound Effect");
+                driftSound.volume = (kph / car.topSpeed);
+                driftSound.Play();
             }
             // Play handbrake sound
             if (!isHandBraking)

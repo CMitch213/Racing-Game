@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
+    //This is all very self explanatory
     public void LoadNurbur()
     {
         SceneManager.LoadScene("Nurburgring");
@@ -25,6 +26,7 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("Toads-Harbour");
     }
+    //Random Function
     public void Ran()
     {
         int select = Random.Range(1, 6);    //Set max value 1 highger than possible

@@ -10,6 +10,7 @@ public class CollisionDetector : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        //What you crash into
         string otherObject = collision.gameObject.name;
 
         // Log the collision
@@ -27,6 +28,7 @@ public class CollisionDetector : MonoBehaviour
 
     void TriggerCrashEffects(Collision collision)
     {
+        //Calculate how strong you collide
         float impactForce = collision.relativeVelocity.magnitude;
         Debug.Log("Impact Force: " + impactForce);
 

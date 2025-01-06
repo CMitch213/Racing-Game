@@ -5,14 +5,27 @@ using UnityEngine.InputSystem;
 
 public class CursorScript : MonoBehaviour
 {
-    [SerializeField] private float pauseInput;
+    //FOrmatting for the inspector
+    [Space(10)]
+    [Header("Do you want the cursor visible?")]
+    //Set in Inspector
     public bool startVisible;
+    [Space(30)]
+
+    [Header("--DEBUG--ONLY--")]
+    [SerializeField] private float pauseInput;
+
 
     void Start()
     {
+        //Make it start depdning on your start visible variable
         if (startVisible)
         {
             Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
         }
     }
 

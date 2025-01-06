@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RainbowResetBox : MonoBehaviour
 {
-
+    //Placed onto the track
     public GameObject resetPoint;
 
+    //When a collision happens with the box
     private void OnCollisionEnter(Collision collision)
     {
         //Make sure I hit the player
