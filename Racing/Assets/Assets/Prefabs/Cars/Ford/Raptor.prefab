@@ -2994,6 +2994,7 @@ GameObject:
   - component: {fileID: 158408361867503612}
   - component: {fileID: 6558007512323879326}
   - component: {fileID: 656685766680367624}
+  - component: {fileID: 7681995648804359286}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -3179,6 +3180,18 @@ MonoBehaviour:
   lap2GO: {fileID: 7471339699368914138}
   lap3GO: {fileID: 7826877349652702629}
   totalGO: {fileID: 8046623289388698559}
+--- !u!114 &7681995648804359286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858080782805756357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3047a8618a80261439a21993d26653a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5098763969116546820
 GameObject:
   m_ObjectHideFlags: 0

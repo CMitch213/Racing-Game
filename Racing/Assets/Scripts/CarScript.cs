@@ -97,12 +97,11 @@ public class CarScript : MonoBehaviour
     // Calculate RPM and Do Transmission/Gear Changes
     void EngineRPM()
     {
-        // Calculate RPM
-        // Check that you're actually in a gear
-        if (gear >= 1 && dashGear != "N")
-        {
-            rpm = (kph * (90 / gear * 2)) + car.idleRPM;
-        }
+        //Run for if it's a manual
+        ManualTransmission();
+        //Run for if it's an auto
+        AutomaticTransmission();
+        
         //Let you rev bomb in Neutral
         if(dashGear == "N")
         {
@@ -110,12 +109,12 @@ public class CarScript : MonoBehaviour
             // Rev that ho in Neutral
             if (ThrottleInput > 0.0f)
             {
-                rpm = Mathf.Lerp(rpm, (ThrottleInput * car.maxRPM + (kph * 20)) + car.idleRPM, 50000.0f);
+                rpm = Mathf.Lerp(rpm, (ThrottleInput * car.maxRPM + (kph * 20)) + car.idleRPM, Time.deltaTime);
             }
             // Slowly go back to Idle
             else
             {
-                rpm = Mathf.Lerp(rpm, car.idleRPM, 50000.0f);
+                rpm = Mathf.Lerp(rpm, car.idleRPM, Time.deltaTime);
             }
             
         }
@@ -137,25 +136,16 @@ public class CarScript : MonoBehaviour
             rpm = car.idleRPM;
         }
 
-        //Automatic Transmission 
-        if (car.Auto && dashGear != "N" && dashGear != "P")
+        if (car.Auto)
         {
-            // Upshift after a specfic rpm
-            if(rpm / car.maxRPM >= 0.35 && gear < car.Speed)
-            {
-                gear++;
-                rpm /= 1.7f;
-            }
-            // Downshift at a specific rpm
-            if (rpm / car.maxRPM <= 0.28 && gear > 1)
-            {
-                gear--;
-                rpm *= 1.7f;
-            }
+            // Display what gear you currently are in
+            transmissionText.text = gear.ToString();
         }
-
-        // Display what gear you currently are in
-        transmissionText.text = gear.ToString();
+        else
+        {
+            // Display what gear you currently are in
+            transmissionText.text = Mathf.Abs(gearNum).ToString();
+        }
 
         // Don't shift past your maximum gear, duh
         if(gear > car.Speed)
@@ -168,9 +158,108 @@ public class CarScript : MonoBehaviour
         rpmNeedle.transform.localEulerAngles = new Vector3(0, 0, (rpm / car.maxRPM * 260.0f - 130.0f) * -1.0f);
     }
 
+    void ManualTransmission()
+    {
+        //Get Input
+        Gamepad CurrentGamepad = Gamepad.current;
+        if (CurrentGamepad == null) { Debug.Log("Reconnect Controller/Gamepad"); return; }
+
+        //Manual Shifting
+        if (car.Manual)
+        {
+            //Inputs
+            ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
+            ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
+
+            //Shifts Up
+            if (ShiftUp == 1.0f && shiftTime >= 0.25f)
+            {
+                if (gearNum != 0)
+                {
+                    rpm /= 1.7f;
+                }
+                gearNum++;
+                shiftTime = 0.0f;
+            }
+            //Shifts Down
+            if (ShiftDown == 1.0f && shiftTime >= 0.25f)
+            {
+                if (gearNum != 0)
+                {
+                    rpm *= 1.7f;
+                }
+                gearNum--;
+                shiftTime = 0.0f;
+            }
+
+            //Neutral at 0
+            if (gearNum == 0)
+            {
+                dashGear = "N";
+                gearText.text = dashGear;
+            }
+            //Reverse at -1
+            else if (gearNum == -1)
+            {
+                dashGear = "R";
+                gearText.text = dashGear;
+            }
+            //Actual Gears
+            else
+            {
+                dashGear = gearNum.ToString();
+                gearText.text = dashGear;
+            }
+
+            //Don't let go below park or above drive
+            if (gearNum < -1) { gearNum = -1; }
+            if (gearNum > car.Speed) { gearNum = car.Speed; }
+
+            //Calculate RPM
+            float targetRPM = ((kph * 2 / car.topSpeed) * (120 / gear * 6)) + car.idleRPM;
+            if (gear >= 1)
+            {
+                rpm = Mathf.Lerp(rpm, targetRPM, Time.deltaTime);
+            }
+        }
+    }
+
+    void AutomaticTransmission()
+    {
+        //Shifting
+        if (car.Auto)
+        {
+            //Automatic Transmission 
+            if (car.Auto && dashGear != "N" && dashGear != "P")
+            {
+                // Upshift after a specfic rpm
+                if (rpm / car.maxRPM >= 0.35 && gear < car.Speed)
+                {
+                    gear++;
+                    rpm /= 1.7f;
+                }
+                // Downshift at a specific rpm
+                if (rpm / car.maxRPM <= 0.28 && gear > 1)
+                {
+                    gear--;
+                    rpm *= 1.7f;
+                }
+            }
+
+            // Calculate RPM
+            // Check that you're actually in a gear
+            if (gear >= 1 && dashGear != "N")
+            {
+                rpm = (kph * (90 / gear * 2)) + car.idleRPM;
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         //Reset Values
         driftParticle.Pause();
         gear = 1;
@@ -205,11 +294,19 @@ public class CarScript : MonoBehaviour
 
                 break;
         }
+
+        //Start in neutral if Manual
+        if (car.Manual)
+        {
+            gearNum = 0;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         //Get Input
         Gamepad CurrentGamepad = Gamepad.current;
         if (CurrentGamepad == null) { Debug.Log("Reconnect Controller/Gamepad"); return; }
@@ -239,7 +336,7 @@ public class CarScript : MonoBehaviour
             {
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
-                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 2))));
+                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (12 - car.accelMult + (gear * 10))));
                 }
             }
             //Slowly remove speed if not pressing gas
@@ -316,58 +413,6 @@ public class CarScript : MonoBehaviour
                     if (gearNum < 1) { gearNum = 1; }
                     if (gearNum > 4) { gearNum = 4; }
                 }
-            }
-            //Manual Shifting
-            if (car.Manual)
-            {
-                //Inputs
-                ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
-                ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
-
-                //Shifts Up
-                if (ShiftUp == 1.0f && shiftTime >= 0.25f)
-                {
-                    gearNum++;
-                    shiftTime = 0.0f;
-
-                    if (gearNum >= 1)
-                    {
-                        rpm *= 1.7f;
-                    }
-                }
-                //Shifts Down
-                if (ShiftDown == 1.0f && shiftTime >= 0.25f)
-                {
-                    gearNum--;
-                    shiftTime = 0.0f;
-                    if (gearNum > 1)
-                    {
-                        rpm /= 1.7f;
-                    }
-                }
-
-                //Neutral at 0
-                if (gearNum == 0)
-                {
-                    dashGear = "N";
-                    gearText.text = dashGear;
-                }
-                //Reverse at -1
-                else if(gearNum == -1)
-                {
-                    dashGear = "R";
-                    gearText.text = dashGear;
-                }
-                //Actual Gears
-                else
-                {
-                    dashGear = gearNum.ToString();
-                    gearText.text = dashGear;
-                }
-
-                //Don't let go below park or above drive
-                if (gearNum < -1) { gearNum = -1; }
-                if (gearNum > car.Speed) { gearNum = car.Speed; }
             }
 
             //Limit Speed

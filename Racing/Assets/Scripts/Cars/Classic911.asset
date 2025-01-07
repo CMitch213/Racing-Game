@@ -30,6 +30,6 @@ MonoBehaviour:
   carName: 930
   carBrand: Porsche
   carDrivetrain: 1
-  Speed: 4
-  Auto: 1
-  Manual: 0
+  Speed: 5
+  Auto: 0
+  Manual: 1

@@ -31,5 +31,5 @@ MonoBehaviour:
   carBrand: Porsche
   carDrivetrain: 1
   Speed: 5
-  Auto: 1
-  Manual: 0
+  Auto: 0
+  Manual: 1
