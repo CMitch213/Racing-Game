@@ -54,6 +54,8 @@ public class CarStats : ScriptableObject
     public int Speed;
     public bool Auto;
     public bool Manual;
+    [Tooltip("Only matters for manual cars")]
+    public float gearRat1, gearRat2, gearRat3, gearRat4, gearRat5, gearRat6;
 
     public void ZeroOutAll()
     {

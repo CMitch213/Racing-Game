@@ -93,6 +93,7 @@ public class CarScript : MonoBehaviour
     public GameObject carOnUI;
     bool isHandBraking = false;
     public GameObject exhaust;
+    float targetRPM = 1000;     //Simple starting num
 
     // Calculate RPM and Do Transmission/Gear Changes
     void EngineRPM()
@@ -167,6 +168,9 @@ public class CarScript : MonoBehaviour
         //Manual Shifting
         if (car.Manual)
         {
+            //Set gear ratios to your actual gear ratios
+            float[] gearRatios = { car.gearRat1, car.gearRat2, car.gearRat3, car.gearRat4, car.gearRat5, car.gearRat6 };
+
             //Inputs
             ShiftUp = CurrentGamepad.rightShoulder.ReadValue();
             ShiftDown = CurrentGamepad.leftShoulder.ReadValue();
@@ -176,7 +180,7 @@ public class CarScript : MonoBehaviour
             {
                 if (gearNum != 0)
                 {
-                    rpm /= 1.7f;
+                    //rpm /= 1.7f;
                 }
                 gearNum++;
                 shiftTime = 0.0f;
@@ -186,7 +190,7 @@ public class CarScript : MonoBehaviour
             {
                 if (gearNum != 0)
                 {
-                    rpm *= 1.7f;
+                    //rpm *= 1.7f;
                 }
                 gearNum--;
                 shiftTime = 0.0f;
@@ -216,9 +220,23 @@ public class CarScript : MonoBehaviour
             if (gearNum > car.Speed) { gearNum = car.Speed; }
 
             //Calculate RPM
-            float targetRPM = ((kph * 2 / car.topSpeed) * (120 / gear * 6)) + car.idleRPM;
+            //Has issues if it is in Neutral if it wasn't for this if
+            if(gearNum != 0)
+            {
+                //Calculate rpm
+                //This is setting our target RPM that we will move to
+                //There was a LOT of tinkering to get this to be even okay
+                if (gearNum - 1 >= 0)
+                {
+                    Debug.Log(gearRatios);
+                    targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * 1000) + car.idleRPM);
+                }
+                //Print this when debugging
+                Debug.Log(targetRPM);
+            }
             if (gear >= 1)
             {
+                //Slowly move from current RPM to the target RPM
                 rpm = Mathf.Lerp(rpm, targetRPM, Time.deltaTime);
             }
         }
@@ -258,8 +276,9 @@ public class CarScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
+        //When you load in (only matters for Manuals)
+        float targetRPM = car.idleRPM;
+        
         //Reset Values
         driftParticle.Pause();
         gear = 1;
@@ -334,9 +353,21 @@ public class CarScript : MonoBehaviour
             }
             if(gearNum >= 1 && car.Manual)
             {
+                //Set gear ratios to your actual gear ratios
+                float[] gearRatios = { car.gearRat1, car.gearRat2, car.gearRat3, car.gearRat4, car.gearRat5, car.gearRat6 };
+
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
-                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (12 - car.accelMult + (gear * 10))));
+                    /*
+                     * power to wheel = 
+                     * how hard you're pressing the gas *
+                     * torque *
+                     * hp * 
+                     * gear ratio *
+                     * 10 (increase to go faster) +
+                     * accelMult (increase in CarStats to go faster)
+                     * */
+                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp * (gearRatios[gearNum-1] * 90)) + car.accelMult);
                 }
             }
             //Slowly remove speed if not pressing gas
