@@ -228,11 +228,16 @@ public class CarScript : MonoBehaviour
                 //There was a LOT of tinkering to get this to be even okay
                 if (gearNum - 1 >= 0)
                 {
-                    Debug.Log(gearRatios);
-                    targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * 1000) + car.idleRPM);
+                    /*
+                     * speed / top speed (percentage of how fast you're going)
+                     * * gear ratios^2 (make your transmission matter)
+                     * * 4250 make your rpms in the thousands
+                     * + idle so you are starting at your idle
+                    */
+                    targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * gearRatios[gearNum - 1] * 4250) + car.idleRPM);
                 }
                 //Print this when debugging
-                Debug.Log(targetRPM);
+                //Debug.Log(targetRPM);
             }
             if (gear >= 1)
             {
@@ -355,7 +360,7 @@ public class CarScript : MonoBehaviour
             {
                 //Set gear ratios to your actual gear ratios
                 float[] gearRatios = { car.gearRat1, car.gearRat2, car.gearRat3, car.gearRat4, car.gearRat5, car.gearRat6 };
-
+                //Debug.Log(gearRatios[gearNum-1]);
                 foreach (WheelCollider PWheel in PoweredWheels)
                 {
                     /*
@@ -363,11 +368,23 @@ public class CarScript : MonoBehaviour
                      * how hard you're pressing the gas *
                      * torque *
                      * hp * 
-                     * gear ratio *
-                     * 10 (increase to go faster) +
-                     * accelMult (increase in CarStats to go faster)
+                     * gear ratio
+                     * divided by 20 - accel mult
                      * */
-                    PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp * (gearRatios[gearNum-1] * 90)) + car.accelMult);
+
+                    // If you're not redlining it
+                    //Debug.Log(rpm);
+                    if (targetRPM + 350  < car.maxRPM)
+                    {
+                        PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult) * gearRatios[gearNum - 1]));
+                    }
+                    else
+                    {
+                        //you're redlining
+                        //might eventually put something here
+                        PWheel.motorTorque = 0;
+                    }
+                    
                 }
             }
             //Slowly remove speed if not pressing gas
