@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
   m_Name: Classic911
   m_EditorClassIdentifier: 
-  hp: 256
+  hp: 171
   horsepowerCurve:
     serializedVersion: 2
     m_Curve: []
@@ -34,8 +34,8 @@ MonoBehaviour:
   Auto: 0
   Manual: 1
   gearRat1: 2.25
-  gearRat2: 1.304
-  gearRat3: 0.893
+  gearRat2: 1.5
+  gearRat3: 1.1
   gearRat4: 0.625
   gearRat5: 0
   gearRat6: 0

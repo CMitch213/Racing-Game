@@ -3253,7 +3253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14}
+  m_AnchoredPosition: {x: 0, y: -19}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8472812485067639886
@@ -3284,7 +3284,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 911 (930)
+  m_text: '911 (930)
+
+    (Manual)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3caaf7407667664ca9ec6b184fab38d, type: 2}
   m_sharedMaterial: {fileID: -6630023055648870358, guid: e3caaf7407667664ca9ec6b184fab38d, type: 2}

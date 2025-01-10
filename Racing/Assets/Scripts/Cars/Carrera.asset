@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfa092b15c61d24bb4bb43e29639bae, type: 3}
   m_Name: Carrera
   m_EditorClassIdentifier: 
-  hp: 231
+  hp: 171
   horsepowerCurve:
     serializedVersion: 2
     m_Curve: []

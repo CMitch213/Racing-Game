@@ -234,7 +234,7 @@ public class CarScript : MonoBehaviour
                      * * 4250 make your rpms in the thousands
                      * + idle so you are starting at your idle
                     */
-                    targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * gearRatios[gearNum - 1] * 4250) + car.idleRPM);
+                    targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * gearRatios[gearNum - 1] * 6000) + car.idleRPM);
                 }
                 //Print this when debugging
                 //Debug.Log(targetRPM);
