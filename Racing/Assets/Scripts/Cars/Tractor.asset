@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 50
   accelMult: 10
   centreOfGravityOffsetf: -7
+  dampenRate: 1
   MaxSteeringAngle: 20
   carName: Tractor
   carBrand: Tractor
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 23
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

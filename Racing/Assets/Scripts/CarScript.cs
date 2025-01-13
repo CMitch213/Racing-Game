@@ -231,7 +231,7 @@ public class CarScript : MonoBehaviour
                     /*
                      * speed / top speed (percentage of how fast you're going)
                      * * gear ratios^2 (make your transmission matter)
-                     * * 4250 make your rpms in the thousands
+                     * * 6000 make your rpms in the thousands
                      * + idle so you are starting at your idle
                     */
                     targetRPM = ((kph / car.topSpeed * gearRatios[gearNum-1] * gearRatios[gearNum - 1] * 6000) + car.idleRPM);
@@ -281,6 +281,7 @@ public class CarScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //When you load in (only matters for Manuals)
         float targetRPM = car.idleRPM;
         
@@ -324,12 +325,17 @@ public class CarScript : MonoBehaviour
         {
             gearNum = 0;
         }
+
+        foreach(WheelCollider wheel in Wheels)
+        {
+            wheel.wheelDampingRate = car.dampenRate;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log((ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 2)))));
 
         //Get Input
         Gamepad CurrentGamepad = Gamepad.current;
@@ -356,6 +362,7 @@ public class CarScript : MonoBehaviour
                     PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult + (gear * 2))));
                 }
             }
+            
             if(gearNum >= 1 && car.Manual)
             {
                 //Set gear ratios to your actual gear ratios
@@ -376,7 +383,9 @@ public class CarScript : MonoBehaviour
                     //Debug.Log(rpm);
                     if (targetRPM + 350  < car.maxRPM)
                     {
-                        PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult) * gearRatios[gearNum - 1]));
+                        //PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult) * gearRatios[gearNum - 1]));
+                        PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp + car.accelMult) * gearRatios[gearNum - 1]);
+                        Debug.Log(PWheel.rpm);
                     }
                     else
                     {

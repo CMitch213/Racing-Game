@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 116
   accelMult: 18
   centreOfGravityOffsetf: -2
+  dampenRate: 1
   MaxSteeringAngle: 35
   carName: Mazda
   carBrand: MX-5
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 4
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 230
   accelMult: 15
   centreOfGravityOffsetf: -3
+  dampenRate: 8
   MaxSteeringAngle: 35
   carName: McQueen
   carBrand: Lightning
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 8
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

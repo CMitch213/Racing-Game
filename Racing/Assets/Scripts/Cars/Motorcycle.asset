@@ -25,7 +25,8 @@ MonoBehaviour:
   maxRPM: 19900
   topSpeed: 112
   accelMult: 20
-  centreOfGravityOffsetf: 0
+  centreOfGravityOffsetf: -2
+  dampenRate: 1
   MaxSteeringAngle: 30
   carName: Motorcycle
   carBrand: N/A
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 6
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

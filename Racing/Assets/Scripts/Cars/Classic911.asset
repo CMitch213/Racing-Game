@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 261
   accelMult: 15
   centreOfGravityOffsetf: -4
+  dampenRate: 8
   MaxSteeringAngle: 30
   carName: 930
   carBrand: Porsche

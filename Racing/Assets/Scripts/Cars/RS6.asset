@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 200
   accelMult: 20
   centreOfGravityOffsetf: -2
+  dampenRate: 17
   MaxSteeringAngle: 30
   carName: RS6 Avant
   carBrand: Audi
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 8
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

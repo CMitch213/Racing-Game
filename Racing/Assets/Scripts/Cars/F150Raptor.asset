@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 120
   accelMult: 9
   centreOfGravityOffsetf: -5
+  dampenRate: 7
   MaxSteeringAngle: 30
   carName: F150 Raptor
   carBrand: Ford
@@ -33,3 +34,9 @@ MonoBehaviour:
   Speed: 10
   Auto: 1
   Manual: 0
+  gearRat1: 0
+  gearRat2: 0
+  gearRat3: 0
+  gearRat4: 0
+  gearRat5: 0
+  gearRat6: 0

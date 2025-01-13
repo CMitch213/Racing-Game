@@ -26,6 +26,7 @@ MonoBehaviour:
   topSpeed: 152
   accelMult: 15
   centreOfGravityOffsetf: -10
+  dampenRate: 17
   MaxSteeringAngle: 35
   carName: '''83 Carrera'
   carBrand: Porsche

@@ -30,6 +30,7 @@ public class CarStats : ScriptableObject
     [Header("Vehicle Stats")]
     [Tooltip("Usually -7 to 0")]
     public float centreOfGravityOffsetf;
+    public int dampenRate;
 
     [Space(25)]
 
