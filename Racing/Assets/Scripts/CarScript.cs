@@ -145,6 +145,7 @@ public class CarScript : MonoBehaviour
         else
         {
             // Display what gear you currently are in
+            // Absolute value is used so while youre in reverse is not cooked
             transmissionText.text = Mathf.Abs(gearNum).ToString();
         }
 
