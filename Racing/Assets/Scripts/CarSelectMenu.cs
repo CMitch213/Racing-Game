@@ -11,6 +11,7 @@ public class CarSelectMenu : MonoBehaviour
     [Header("Not Cars")]
     public GameObject cam;
     public GameObject thisMenu;
+    public bool gameHasStarted;
     [Space(25)]
     [Header("Cars")]
     public GameObject camaro;
@@ -25,6 +26,7 @@ public class CarSelectMenu : MonoBehaviour
 
     private void Start()
     {
+        gameHasStarted = false;
     }
 
     void Update()
@@ -43,6 +45,7 @@ public class CarSelectMenu : MonoBehaviour
         camaro.SetActive(true);     // Enable car
         cam.SetActive(false);       // Turn off menu camera
         thisMenu.SetActive(false);  // Disable Selection Menu
+        gameHasStarted = true;
     }
 
     public void Miata()
@@ -50,6 +53,7 @@ public class CarSelectMenu : MonoBehaviour
         miata.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void Dakar()
@@ -57,6 +61,7 @@ public class CarSelectMenu : MonoBehaviour
         dakar.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void RS6()
@@ -64,6 +69,7 @@ public class CarSelectMenu : MonoBehaviour
         rs6.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void NineEleven()
@@ -71,6 +77,7 @@ public class CarSelectMenu : MonoBehaviour
         nineEleven.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void Tractor()
@@ -78,6 +85,7 @@ public class CarSelectMenu : MonoBehaviour
         tractor.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void Raptor()
@@ -85,6 +93,7 @@ public class CarSelectMenu : MonoBehaviour
         raptor.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void Bike()
@@ -92,6 +101,7 @@ public class CarSelectMenu : MonoBehaviour
         bike.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     public void McQueen()
@@ -99,6 +109,7 @@ public class CarSelectMenu : MonoBehaviour
         queen.SetActive(true);
         cam.SetActive(false);
         thisMenu.SetActive(false);
+        gameHasStarted = true;
     }
 
     //Random fucntion

@@ -70,9 +70,11 @@
     <Compile Include="Assets\Scripts\CursorScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\CarSelectMenu.cs" />
+    <Compile Include="Assets\Scripts\Ghost.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXShockwave.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\PPFXWindow\PPFXWindow.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\ReplayMenu.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXChainReaction.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXScale.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Radio.cs" />
@@ -81,8 +83,10 @@
     <Compile Include="Assets\Scripts\RumbleManager.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Car_Controller.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
+    <Compile Include="Assets\Scripts\GhostPlayer.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXClickMoveSmooth.cs" />
     <Compile Include="Assets\Scripts\CollisionDetector.cs" />
+    <Compile Include="Assets\Scripts\GhostRecorder.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\PPFXWindow\PPFXRendererLayer.cs" />
     <Compile Include="Assets\Scripts\Lap.cs" />
     <Compile Include="Assets\Assets\AssetStore\Mountain Terrain rocks and tree\Script\Camera\CameraControl.cs" />
