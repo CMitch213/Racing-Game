@@ -11,7 +11,7 @@ public class CarScript : MonoBehaviour
     public CarStats car;
     public TMP_Text Speed_Text;
     public Rigidbody rb;
-    float kph = 0;
+    public float kph = 0;
     bool grounded = true;
     float steerangle;
 
@@ -31,7 +31,7 @@ public class CarScript : MonoBehaviour
     [Header("Inputs")]
     public float ThrottleInput;
     public float BrakeInput;
-    [SerializeField] private float HandBrakeInput;
+    public float HandBrakeInput;
     public float SteeringInput;
     [SerializeField] private float ReverseInput;
     [SerializeField] private float dpadX;
@@ -419,7 +419,7 @@ public class CarScript : MonoBehaviour
                     {
                         //PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp / (20 - car.accelMult) * gearRatios[gearNum - 1]));
                         PWheel.motorTorque = (ThrottleInput * car.EngineTorque * (car.hp + car.accelMult) * gearRatios[gearNum - 1]);
-                        Debug.Log(PWheel.rpm);
+                        //Debug.Log(PWheel.rpm);
                     }
                     else
                     {
