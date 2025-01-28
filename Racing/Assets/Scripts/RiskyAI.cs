@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
-public class BasicAi : MonoBehaviour
+public class RiskyAI : MonoBehaviour
 {
-    // This AI is basic and drives to and from each target.
+    // This AI is like the basic AI but takes more risks and drives faster and harder
     [Header("--From Player--")]
     public CarScript carScript;
     public CarSelectMenu menu;
@@ -68,10 +67,10 @@ public class BasicAi : MonoBehaviour
             forwardAmount = 1f;
         }
         //Reverse
-        else if(dot < 0f)
+        else if (dot < 0f)
         {
             //Check if too far to reverse
-            if(distance >= 25f)
+            if (distance >= 25f)
             {
                 //Put Car in Drive
                 carScript.gearNum = 4;
@@ -85,7 +84,7 @@ public class BasicAi : MonoBehaviour
                 //Put Car in Reverse
                 carScript.gearNum = 2;
                 carScript.dashGear = "R";
-                forwardAmount = 0.5f;
+                forwardAmount = 1.0f;
             }
         }
 
@@ -97,7 +96,7 @@ public class BasicAi : MonoBehaviour
         //Turn Right
         if (angleToSteer > 0)
         {
-            turnAmount = 1f * (angleToSteer/180) + 0.1f;
+            turnAmount = 1f * (angleToSteer / 180) + 0.1f;
         }
         //Turn Left
         else if (angleToSteer < 0)
@@ -108,15 +107,15 @@ public class BasicAi : MonoBehaviour
         //Ai Drifting (Random Chance)
         if (Mathf.Abs(angleToSteer) > 50)
         {
-            int rnd = Random.Range(1, 5);
-            
+            int rnd = Random.Range(1, 3);
+
             //DRIFT
-            if(rnd == 2)
+            if (rnd == 2)
             {
                 driftT = 0.0f;
             }
         }
-        if(driftT < 0.25f)
+        if (driftT < 0.25f)
         {
             carScript.HandBrakeInput = 1.0f;
         }
@@ -124,7 +123,7 @@ public class BasicAi : MonoBehaviour
         {
             carScript.HandBrakeInput = 0.0f;
         }
-        
+
         //only run the AI if the player has selected a car.
         if (menu.gameHasStarted)
         {
@@ -156,13 +155,13 @@ public class BasicAi : MonoBehaviour
             //Braking for if you're going slow
             if (carScript.kph < 60)
             {
-                //Brake if youre going over 30 mph
-                if (carScript.kph > 30f && dist < 200f)
+                //Brake if youre going over 40 / brake strength mph
+                if (carScript.kph > 40f && dist < 175f)
                 {
-                    forwardAmount = 0f;
+                    forwardAmount = 0.15f / targetPositionTransform.GetComponent<AITargetStats>().brakeStrength;
                     brakeAmount = 1f * targetPositionTransform.GetComponent<AITargetStats>().brakeStrength;
                 }
-                //Dont break if you're going slower than 30
+                //Dont break if you're going slower than 40
                 else
                 {
                     forwardAmount = 1f;
@@ -171,8 +170,8 @@ public class BasicAi : MonoBehaviour
             }
             else if (carScript.kph > 60)
             {
-                //Brake if youre going over 30 mph
-                if (carScript.kph > 30f && dist < 500f)
+                //Brake if youre going over 40 mph
+                if (carScript.kph > 40f / targetPositionTransform.GetComponent<AITargetStats>().brakeStrength && dist < 400f)
                 {
                     forwardAmount = 0f;
                     brakeAmount = 1f * targetPositionTransform.GetComponent<AITargetStats>().brakeStrength;

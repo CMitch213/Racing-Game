@@ -12,6 +12,7 @@ public class CarSelectMenu : MonoBehaviour
     public GameObject cam;
     public GameObject thisMenu;
     public bool gameHasStarted;
+    public GameObject selectedCar;
     [Space(25)]
     [Header("Cars")]
     public GameObject camaro;
@@ -23,10 +24,22 @@ public class CarSelectMenu : MonoBehaviour
     public GameObject raptor;
     public GameObject bike;
     public GameObject queen;
+    [Header("CarsGO")]
+    public GameObject camaroGO;
+    public GameObject miataGO;
+    public GameObject dakarGO;
+    public GameObject rs6GO;
+    public GameObject nineElevenGO;
+    public GameObject tractorGO;
+    public GameObject raptorGO;
+    public GameObject bikeGO;
+    public GameObject queenGO;
+
 
     private void Start()
     {
         gameHasStarted = false;
+        selectedCar = thisMenu;
     }
 
     void Update()
@@ -45,7 +58,8 @@ public class CarSelectMenu : MonoBehaviour
         camaro.SetActive(true);     // Enable car
         cam.SetActive(false);       // Turn off menu camera
         thisMenu.SetActive(false);  // Disable Selection Menu
-        gameHasStarted = true;
+        gameHasStarted = true;      // Enable ai and shit
+        selectedCar = camaroGO;       // Pick which car is selected
     }
 
     public void Miata()
@@ -54,6 +68,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = miataGO;
     }
 
     public void Dakar()
@@ -62,6 +77,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = dakarGO;
     }
 
     public void RS6()
@@ -70,6 +86,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = rs6GO;
     }
 
     public void NineEleven()
@@ -78,6 +95,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = nineElevenGO;
     }
 
     public void Tractor()
@@ -86,6 +104,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = tractorGO;
     }
 
     public void Raptor()
@@ -94,6 +113,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = raptorGO;
     }
 
     public void Bike()
@@ -102,6 +122,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = bikeGO;
     }
 
     public void McQueen()
@@ -110,6 +131,7 @@ public class CarSelectMenu : MonoBehaviour
         cam.SetActive(false);
         thisMenu.SetActive(false);
         gameHasStarted = true;
+        selectedCar = queenGO;
     }
 
     //Random fucntion
