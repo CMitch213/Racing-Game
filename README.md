@@ -5,6 +5,8 @@
 
 ## Description
 This is a simple physics based racing game that I have been working on for a few months. It was made with C# and the Unity Game Engine. I did the coding, however the assets were not created by me. This game right now is only playable with a controller or a racing wheel but I might eventually add keyboard support. 
+Install a build of the game here:
+https://cmitch213.itch.io/racing-game
 
 <br>
 
