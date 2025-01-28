@@ -41,7 +41,7 @@ public class BasicAi : MonoBehaviour
         targetPosition = targetPositionTransform.position;
 
         //Loop around list
-        if (currentTarget > targets.Count)
+        if (currentTarget >= targets.Count-1)
         {
             currentTarget = 0;
         }

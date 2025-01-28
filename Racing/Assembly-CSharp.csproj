@@ -77,8 +77,10 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ReplayMenu.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXChainReaction.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TutorialUI.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXScale.cs" />
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Radio.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TipStats.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Logitech SDK\Script Sample\LogitechSteeringWheel.cs" />
     <Compile Include="Assets\Scripts\RumbleManager.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\Scripts\Speedometer_Controller.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\SkipIfHit.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXChainReactionInspector.cs" />
     <Compile Include="Assets\Scripts\WheelControl.cs" />
     <Compile Include="Assets\Assets\AssetStore\ParticleProFX\Resources\Scripts\PPFXAutodestruct.cs" />
@@ -127,6 +130,7 @@
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\Car Controller For Unity\README.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Assets\UI\Prompts\Readme.txt" />
     <None Include="Assets\Assets\AssetStore\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\Logitech SDK\LogitechSteeringWheelEnginesWrapper.dll" />
     <None Include="Assets\Logitech SDK\LogitechGkeyEnginesWrapper.dll" />
@@ -142,11 +146,13 @@
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Assets\UI\Font2\README.txt" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Assets\CarModels\Porsche\1985Carrera\source\License.txt" />
     <None Include="Assets\Assets\UI\Font\misc\superbrigade-e69c.txt" />
     <None Include="Assets\Logitech SDK\LogitechGArxControlEnginesWrapper.dll" />
+    <None Include="Assets\Assets\UI\Font2\OFL.txt" />
     <None Include="Assets\Assets\AssetStore\Nicrom\Shaders\Wind\Assets\Shaders\ASE\LPW_Vegetation.shader" />
     <None Include="Assets\Scripts\PreMadeCarController\MST_Creator\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Assets\UI\Font\misc\superbrigade-f3dd.txt" />

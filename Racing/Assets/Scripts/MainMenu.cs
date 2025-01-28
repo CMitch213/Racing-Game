@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,5 +14,10 @@ public class MainMenu : MonoBehaviour
         #if UNITY_STANDALONE
         Application.Quit();
         #endif
+    }
+
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("Tutorial1");
     }
 }
